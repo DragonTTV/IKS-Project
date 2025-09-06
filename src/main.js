@@ -21,17 +21,18 @@ scene.add(ambiLight)
 const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff })
 const cubegeom= new THREE.BoxGeometry(5,5,5)
 const cube = new THREE.Mesh(cubegeom,cubemat)
-cube.position.set(15,0,0)
+cube.position.set(285,0,0)
 cube.material.transparent = true;
 cube.material.opacity = 0.5
-camera.position.set(0,0,0)
+camera.position.set(275,0,0)
+camera.lookAt(cube)
 
 // console.log(cube.position)
 scene.add(cube)
-camera.lookAt(cube)
+camera.rotation.y = -Math.PI/2
 //
 const gltfLoader = new GLTFLoader()
-gltfLoader.load("/src/model/theater/scene.gltf", (gltfscene) => {
+gltfLoader.load("/src/model/theatre.glb", (gltfscene) => {
     scene.add(gltfscene.scene)
     gltfscene.scene.scale.set(15,15,15)
 })
@@ -62,7 +63,7 @@ gltfLoader.load("/src/model/carpet.glb", (gltfscene) => {
 
 function animate(){
     requestAnimationFrame(animate)
-    controls.update()
+    
     renderer.render(scene, camera)
 }
 
