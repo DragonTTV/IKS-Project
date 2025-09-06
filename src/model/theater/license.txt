@@ -1,0 +1,11 @@
+Model Information:
+* title:	Madame Walker Theatre
+* source:	https://sketchfab.com/3d-models/madame-walker-theatre-98ba4154bbb644bb9cb4d9c68d7dd87b
+* author:	IUPUI University Library (https://sketchfab.com/iupuiul)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Madame Walker Theatre" (https://sketchfab.com/3d-models/madame-walker-theatre-98ba4154bbb644bb9cb4d9c68d7dd87b) by IUPUI University Library (https://sketchfab.com/iupuiul) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
