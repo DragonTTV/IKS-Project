@@ -11,14 +11,16 @@ camera.position.z = 100
 const scene = new THREE.Scene();
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
-
+const cubemat = new THREE.MeshNormalMaterial()
+const cubegeom= new THREE.BoxGeometry(5,5,5)
+const cube = new THREE.Mesh(cubegeom,cubemat)
+scene.add(cube)
 //Something
 
 function animate(){
     requestAnimationFrame(animate)
-    // console.log(camera.position)
     controls.update()
     renderer.render(scene, camera)
 }
 //new something
-animate()   
+animate()  
