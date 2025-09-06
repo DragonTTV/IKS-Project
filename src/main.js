@@ -9,23 +9,51 @@ document.body.appendChild(renderer.domElement);
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 camera.position.z = 100
 
+
 const scene = new THREE.Scene();
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
 
+
 const ambiLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambiLight)
 
-const cubemat = new THREE.MeshNormalMaterial()
+const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff })
 const cubegeom= new THREE.BoxGeometry(5,5,5)
 const cube = new THREE.Mesh(cubegeom,cubemat)
 cube.position.set(15,0,0)
-console.log(cube.position)
+cube.material.transparent = true;
+cube.material.opacity = 0.5
+camera.position.set(0,0,0)
+
+// console.log(cube.position)
 scene.add(cube)
+camera.lookAt(cube)
+//
 const gltfLoader = new GLTFLoader()
 gltfLoader.load("/src/model/theater/scene.gltf", (gltfscene) => {
     scene.add(gltfscene.scene)
     gltfscene.scene.scale.set(15,15,15)
+})
+//
+gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
+    gltfscene.scene.position.set(15,0,-10)
+    gltfscene.scene.scale.set(0.1, 0.079, 0.07)
+    gltfscene.scene.rotation.y = Math.PI/2
+    
+    console.log(`Scale`, gltfscene.scene.scale)
+    scene.add(gltfscene.scene)
+
+    
+})
+//
+gltfLoader.load("/src/model/microphone.glb", (gltfscene) => {
+    scene.add(gltfscene.scene)
+    
+})
+//
+gltfLoader.load("/src/model/carpet.glb", (gltfscene) => {
+    scene.add(gltfscene.scene)
     
 })
 
