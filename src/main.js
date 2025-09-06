@@ -24,8 +24,8 @@ const cube = new THREE.Mesh(cubegeom,cubemat)
 cube.position.set(285,0,0)
 cube.material.transparent = true;
 cube.material.opacity = 0.5
-camera.position.set(275,0,0)
-camera.lookAt(cube)
+camera.position.set(0,5,0)
+// camera.lookAt(cube)
 
 // console.log(cube.position)
 scene.add(cube)
