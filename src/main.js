@@ -12,19 +12,6 @@ const scene = new THREE.Scene();
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
 
-//Floor
-const floorGeometry = new THREE.PlaneGeometry(100, 100)
-const floorTexture = new THREE.MeshNormalMaterial()
-const floor = new THREE.Mesh(floorGeometry, floorTexture)
-floor.rotation.x = -Math.PI/2
-scene.add(floor)
-
-//Adding a cube
-const cubeGeometry = new THREE.BoxGeometry(10, 10, 10)
-const cubeTexture = new THREE.MeshNormalMaterial();
-const cube = new THREE.Mesh(cubeGeometry, cubeTexture)
-
-scene.add(cube)
 
 function animate(){
     requestAnimationFrame(animate)
