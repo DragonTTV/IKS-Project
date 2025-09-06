@@ -1,1 +1,3 @@
 *.bin
+src/model/theater/
+src/model/theatre.glb
