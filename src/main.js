@@ -20,7 +20,7 @@ controls.enableDamping = true;
     const models = await loadModels(scene);
     
     //Theatre
-    models.theatre.scale.set(30, 30, 30);
+    models.theater1.scale.set(30, 30, 30);
     //Carpet
     models.carpet.scale.set(40,50,50);
     models.carpet.position.set(478,-19.5,0);
@@ -95,11 +95,10 @@ scene.add(cube);
 
 function animate(){
     requestAnimationFrame(animate)
-    console.log(camera.position)
     controls.update()
     renderer.render(scene, camera)
 }
-//{x: 343.08138137989505, y: 0.7176062155830963, z: -1.114535992449958}
+
 
 animate()  
 
