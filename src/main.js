@@ -1,6 +1,7 @@
 import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/Addons.js";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { loadModels } from "./handler/modelHandler";
 
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -11,52 +12,62 @@ camera.position.z = 100
 
 
 const scene = new THREE.Scene();
-// const controls = new OrbitControls(camera, renderer.domElement)
-// controls.enableDamping = true
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+(async () => {
+  try {
+    const models = await loadModels(scene);
+    // console.log("✅ All models loaded:", models);
+  } catch (err) {
+    console.error("❌ Error while loading models:", err);
+  }
+})();
 
 
-const ambiLight = new THREE.AmbientLight(0xffffff, 1)
-scene.add(ambiLight)
+const ambiLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambiLight);
 
-const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff })
-const cubegeom= new THREE.BoxGeometry(5,5,5)
-const cube = new THREE.Mesh(cubegeom,cubemat)
-cube.position.set(285,0,0)
+const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const cubegeom= new THREE.BoxGeometry(5,5,5);
+const cube = new THREE.Mesh(cubegeom,cubemat);
+cube.position.set(285,0,0);
 cube.material.transparent = true;
-cube.material.opacity = 0.5
-camera.position.set(0,5,0)
+cube.material.opacity = 0.5;
+camera.position.set(0,5,0);
 // camera.lookAt(cube)
 
 // console.log(cube.position)
-scene.add(cube)
-camera.rotation.y = -Math.PI/2
+scene.add(cube);
+camera.rotation.y = -Math.PI/2;
 //
-const gltfLoader = new GLTFLoader()
-gltfLoader.load("/src/model/theatre.glb", (gltfscene) => {
-    scene.add(gltfscene.scene)
-    gltfscene.scene.scale.set(15,15,15)
-})
-//
-gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
-    gltfscene.scene.position.set(15,0,-10)
-    gltfscene.scene.scale.set(0.1, 0.079, 0.07)
-    gltfscene.scene.rotation.y = Math.PI/2
+// const gltfLoader = new GLTFLoader()
+// gltfLoader.load("/src/model/theatre.glb", (gltfscene) => {
+//     scene.add(gltfscene.scene)
+//     gltfscene.scene.scale.set(15,15,15)
+// })
+// //
+// gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
+//     gltfscene.scene.position.set(15,0,-10)
+//     gltfscene.scene.scale.set(0.1, 0.079, 0.07)
+//     gltfscene.scene.rotation.y = Math.PI/2
     
-    console.log(`Scale`, gltfscene.scene.scale)
-    scene.add(gltfscene.scene)
+//     // console.log(`Scale`, gltfscene.scene.scale)
+//     scene.add(gltfscene.scene)
 
     
-})
-//
-gltfLoader.load("/src/model/microphone.glb", (gltfscene) => {
-    scene.add(gltfscene.scene)
+// })
+// //
+// gltfLoader.load("/src/model/microphone.glb", (gltfscene) => {
+//     scene.add(gltfscene.scene)
     
-})
-//
-gltfLoader.load("/src/model/carpet.glb", (gltfscene) => {
-    scene.add(gltfscene.scene)
+// })
+// //
+// gltfLoader.load("/src/model/carpet.glb", (gltfscene) => {
+//     scene.add(gltfscene.scene)
     
-})
+// })
+
+
 
 
 //Something
