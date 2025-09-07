@@ -32,7 +32,7 @@ scene.add(cube)
 camera.rotation.y = -Math.PI/2
 //
 const gltfLoader = new GLTFLoader()
-gltfLoader.load("/src/model/theatre/scene.gltf", (gltfscene) => {
+gltfLoader.load("/src/model/theatre.glb", (gltfscene) => {
     scene.add(gltfscene.scene)
     gltfscene.scene.scale.set(15,15,15)
 })
