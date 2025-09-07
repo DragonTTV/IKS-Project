@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { loadModels } from "./handler/modelHandler";
+import { PI } from "three/tsl";
 //renderer
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -37,7 +38,20 @@ controls.enableDamping = true;
     models.pillowright.position.set(454,-15.7, 100);
     models.pillowright.rotation.y = Math.PI/6
     //Microphones
-    
+   models.microphone.position.set(458,-15.7,3) 
+   models.microphone.scale.set(20,10,20)
+   models.microphone.rotation.y = Math.PI/2
+
+   models.microphoneleft.position.set(440,-15.7,43) 
+   models.microphoneleft.scale.set(20,10,20)
+   models.microphoneleft.rotation.y = Math.PI/4
+
+   models.microphoneright.position.set(440,-15.7,-40) 
+   models.microphoneright.scale.set(20,10,20)
+   models.microphoneright.rotation.y = 3*Math.PI/4
+
+
+
 
 
     console.log("✅ All models loaded:", models);
@@ -74,6 +88,8 @@ const cubegeom= new THREE.BoxGeometry(5,5,5);
 const cube = new THREE.Mesh(cubegeom,cubemat);
 cube.position.set(585,0,0);
 cube.material.transparent = true;
+cube.visible = false;
+
 cube.material.opacity = 0.5;
 camera.position.set(0,5,0);
 // camera.lookAt(cube)
