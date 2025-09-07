@@ -95,10 +95,11 @@ scene.add(cube);
 
 function animate(){
     requestAnimationFrame(animate)
+    console.log(camera.position)
     controls.update()
     renderer.render(scene, camera)
 }
-
+//{x: 343.08138137989505, y: 0.7176062155830963, z: -1.114535992449958}
 
 animate()  
 
