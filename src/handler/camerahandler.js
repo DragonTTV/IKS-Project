@@ -16,7 +16,7 @@ export class CameraHandler {
 
     // Animate to stage position
     gsap.to(this.camera.position, {
-      duration: 1.5,
+      duration: 2,
       x: endTarget.position.x -20 , 
       y: endTarget.position.y + 7.5  ,
       z: endTarget.position.z  ,
