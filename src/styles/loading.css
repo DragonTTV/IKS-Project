@@ -1,0 +1,157 @@
+/* =============================
+   LOADING SCREEN OVERLAY
+============================= */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: black; /* black while loading */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+  transition: background 1s ease; /* ✅ fades away when curtains open */
+}
+
+/* When curtains open → reveal scene */
+#loading-screen.curtains-open {
+  background: transparent;
+}
+
+/* =============================
+   LOADING BAR + TEXT
+============================= */
+.loader-container {
+  text-align: center;
+  position: relative;
+  z-index: 20;
+  color: white;
+  font-family: sans-serif;
+  transition: opacity 0.5s ease;
+}
+
+.loader-text {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.loader-bar {
+  width: 300px;
+  height: 20px;
+  background: #333;
+  border: 1px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.loader-progress {
+  width: 0%;
+  height: 100%;
+  background: limegreen;
+  transition: width 0.3s ease;
+}
+
+/* =============================
+   CURTAINS
+============================= */
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+
+  /* Fabric texture + folds */
+  background-image:
+    url("/assets/textures/fabric.png"),
+    repeating-linear-gradient(
+      to right,
+      #3a0a0a 0px,
+      #5c1111 30px,
+      #3a0a0a 60px
+    );
+  background-blend-mode: multiply;
+  background-size: 200px auto, 100px 100%;
+  background-repeat: repeat;
+
+  z-index: 15;
+  animation: sway 4s ease-in-out infinite;
+  transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.left-curtain {
+  left: 0;
+  transform: translateX(0);
+  box-shadow: inset -15px 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.right-curtain {
+  right: 0;
+  transform: translateX(0);
+  box-shadow: inset 15px 0 30px rgba(0, 0, 0, 0.6);
+  animation: swayRight 4s ease-in-out infinite;
+}
+
+/* Slight preview open after loading */
+#loading-screen.loaded .left-curtain {
+  transform: translateX(-5%);
+}
+#loading-screen.loaded .right-curtain {
+  transform: translateX(5%);
+}
+
+/* Curtains slide open fully */
+#loading-screen.curtains-open .left-curtain {
+  transform: translateX(-100%);
+}
+#loading-screen.curtains-open .right-curtain {
+  transform: translateX(100%);
+}
+
+/* =============================
+   START BUTTON
+============================= */
+#start-btn {
+  position: relative;
+  z-index: 20;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background: crimson;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, background 0.3s ease;
+}
+
+#start-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#start-btn.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#start-btn:hover {
+  background: darkred;
+}
+
+/* =============================
+   ANIMATIONS
+============================= */
+@keyframes sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-5px); }
+}
+
+@keyframes swayRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}

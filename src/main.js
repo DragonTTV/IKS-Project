@@ -3,7 +3,14 @@ import * as THREE from "three";
 import {RectAreaLightHelper} from "three/examples/jsm/Addons.js";
 
 import { loadModels } from "./handler/modelHandler";
+import { showLoadingScreen } from "./utils/loadingScreen";
 import { PI } from "three/tsl";
+import "../src/styles/loading.css";
+
+
+showLoadingScreen();
+
+
 import { CameraHandler, cameraHandler1 } from "./handler/camerahandler.js";
 import { ClickHandler } from "./handler/clickhandler.js";
 //renderer
@@ -18,8 +25,8 @@ camera.rotation.y = -Math.PI/2;
 camera.position.set(0,5,0)
 
 const scene = new THREE.Scene();
-//const controls = new OrbitControls(camera, renderer.domElement);
-//controls.enableDamping = true;
+// //const controls = new OrbitControls(camera, renderer.domElement);
+// //controls.enableDamping = true;
 
 //dummy targets 
 const stagecubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -58,14 +65,17 @@ seatscube.visible = false;
     models.pillowright.position.set(454,-15.7, 100);
     models.pillowright.rotation.y = Math.PI/6
     //Microphones
-   models.microphone.position.set(458,-15.7,3) 
-   models.microphone.scale.set(20,10,20)
-   models.microphone.rotation.y = Math.PI/2
+   models.mic.position.set(458,-15.7,3) 
+   models.mic.scale.set(20,10,20)
+   models.mic.rotation.y = Math.PI/2
 
-   models.microphoneleft.position.set(440,-15.7,43) 
-   models.microphoneleft.scale.set(20,10,20)
-   models.microphoneleft.rotation.y = Math.PI/4
+   models.micleft.position.set(440,-15.7,43) 
+   models.micleft.scale.set(20,10,20)
+   models.micleft.rotation.y = Math.PI/4
 
+   models.micright.position.set(440,-15.7,-40) 
+   models.micright.scale.set(20,10,20)
+   models.micright.rotation.y = 3*Math.PI/4
    models.microphoneright.position.set(440,-15.7,-40) 
    models.microphoneright.scale.set(20,10,20)
    models.microphoneright.rotation.y = 3*Math.PI/4
@@ -90,19 +100,10 @@ seatscube.visible = false;
 })();
 
 //Lights//
-
 const ambiLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambiLight);
 
-//SpotLight
-// const spotLeft = new THREE.SpotLight(0xF5F5DC, 1, )
-// spotLeft.position.set(508, 0, 0)
-// spotLeft.scale.set(0.2,0.2,0.2)
-
-// const spotLeftHelper = new THREE.SpotLightHelper(spotLeft, 0xffffff)
-// scene.add(spotLeft, spotLeftHelper)
-
-//Rectangular Area Light
+//Stage Lights
 const stageLight = new THREE.RectAreaLight(0xFFFFC5, 60, 80, 120)
 stageLight.rotation.x = THREE.MathUtils.degToRad(-90);
 stageLight.position.set(508, 290, 0)
@@ -117,14 +118,27 @@ const cube = new THREE.Mesh(cubegeom,cubemat);
 cube.position.set(585,0,0);
 cube.material.transparent = true;
 cube.visible = false;
+
+cube.material.opacity = 0.5;
+camera.position.set(0,5,0);
+
 scene.add(cube);
+
+
+// gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
+//     gltfscene.scene.position.set(15,0,-10)
+//     gltfscene.scene.scale.set(0.1, 0.079, 0.07)
+//     gltfscene.scene.rotation.y = Math.PI/2
+    
+
+
 
 
 
 
 function animate(){
     requestAnimationFrame(animate)
-    //controls.update()
+    // //controls.update()
     //console.log(camera.position)
     renderer.render(scene, camera)
 }
