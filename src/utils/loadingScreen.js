@@ -22,18 +22,15 @@ export function updateLoadingProgress(percent) {
   if (text) text.textContent = `${percent}%`;
 
   if (percent >= 100) {
-    // ✅ Curtains stop swaying & slightly pull back
-    document.getElementById("loading-screen").classList.add("loaded");
+    document.getElementById("loading-screen")?.classList.add("loaded");
 
     document.querySelectorAll(".curtain").forEach(c => {
       c.style.animation = "none";
     });
 
-    // Hide loader text
     const loader = document.querySelector(".loader-container");
     if (loader) loader.style.opacity = "0";
 
-    // Show Start button
     const startBtn = document.getElementById("start-btn");
     if (startBtn) {
       setTimeout(() => startBtn.classList.add("show"), 500);
@@ -41,18 +38,22 @@ export function updateLoadingProgress(percent) {
   }
 }
 
-export function enableCurtains() {
+export function enableCurtains(onCurtainsOpen) {
   const startBtn = document.getElementById("start-btn");
-  if (startBtn) {
-    startBtn.onclick = () => {
-      startBtn.classList.remove("show");
-      startBtn.classList.add("fade-out");
+  if (!startBtn) return;
 
-      const overlay = document.getElementById("loading-screen");
-      overlay.classList.add("curtains-open"); // ✅ triggers curtain slide + background fade
+  startBtn.onclick = () => {
+    startBtn.classList.remove("show");
+    startBtn.classList.add("fade-out");
 
-      // remove only after curtains are fully open
-      setTimeout(() => overlay.remove(), 2000);
-    };
-  }
+    const overlay = document.getElementById("loading-screen");
+    overlay?.classList.add("curtains-open"); // triggers curtain CSS animation
+
+    if (onCurtainsOpen) onCurtainsOpen();
+
+    // remove after animation
+    setTimeout(() => {
+      overlay?.remove();
+    }, 3000);
+  };
 }

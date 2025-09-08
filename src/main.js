@@ -1,150 +1,139 @@
 import * as THREE from "three";
-//import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js";
-import {RectAreaLightHelper} from "three/examples/jsm/Addons.js";
-
-import { loadModels } from "./handler/modelHandler";
-import { showLoadingScreen } from "./utils/loadingScreen";
-import { PI } from "three/tsl";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
+import { loadModels } from "./handler/modelHandler.js"; // ensure this path
+import { enableCurtains, showLoadingScreen } from "./utils/loadingScreen.js";
 import "../src/styles/loading.css";
 
-
-showLoadingScreen();
-
-
-import { CameraHandler, cameraHandler1 } from "./handler/camerahandler.js";
+import { CameraHandler } from "./handler/camerahandler.js";
 import { ClickHandler } from "./handler/clickhandler.js";
-//renderer
-const renderer = new THREE.WebGLRenderer({ antialias:true });
+
+showLoadingScreen && showLoadingScreen();
+
+// === Renderer ===
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 document.body.appendChild(renderer.domElement);
-//camera
+
+// === Back Button ===
+const backButton = document.createElement("button");
+backButton.innerText = "⟵ Back to Stage";
+Object.assign(backButton.style, {
+  position: "absolute",
+  top: "20px",
+  left: "20px",
+  padding: "10px 15px",
+  fontSize: "16px",
+  background: "rgba(0,0,0,0.6)",
+  color: "white",
+  border: "1px solid white",
+  borderRadius: "8px",
+  cursor: "pointer",
+  zIndex: "10",
+  display: "none"
+});
+document.body.appendChild(backButton);
+
+// === Camera & Scene ===
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
-// camera.position.x = 385;
-// camera.position.z = 100;
 camera.rotation.y = -Math.PI/2;
-camera.position.set(0,5,0)
-
+camera.position.set(0,5,0);
 const scene = new THREE.Scene();
-// //const controls = new OrbitControls(camera, renderer.domElement);
-// //controls.enableDamping = true;
 
-//dummy targets 
-const stagecubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const stagecubegeom= new THREE.BoxGeometry(5,5,5);
-const stagecube = new THREE.Mesh(stagecubegeom,stagecubemat);
-
-const seatscubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const seatscubegeom= new THREE.BoxGeometry(5,5,5);
-const seatscube = new THREE.Mesh(seatscubegeom,seatscubemat);
-
-stagecube.position.set(350.8986681999935,  44.18452249208729,  8.335760422847635);
+// === Dummy targets ===
+const stagecube = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshStandardMaterial({ color: 0xffffff }));
+stagecube.position.set(350.8986681999935, 44.18452249208729, 8.335760422847635);
+stagecube.name = "stageCube";
 scene.add(stagecube);
+
+const seatscube = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshStandardMaterial({ color: 0xffffff }));
+seatscube.name = "seatsCube";
 scene.add(seatscube);
-stagecube.visible = false;
+stagecube.visible = true;
 seatscube.visible = false;
+
+// === Camera handler ===
+const camHandler = new CameraHandler(camera);
 
 (async () => {
   try {
     const models = await loadModels(scene);
-    
-    //Theatre
+
+    // ensure models exist
+    models.pillow.name = "pillow_center";
+    models.pillowleft.name = "pillow_left";
+    models.pillowright.name = "pillow_right";
+
+    // Scale & place models
     models.theater1.scale.set(30, 30, 30);
-    //Carpet
     models.carpet.scale.set(40,50,50);
     models.carpet.position.set(478,-19.5,0);
-    //Pillows
+
     models.pillow.scale.set(1, 0.632, 0.56);
     models.pillow.position.set(508,-15.7,3);
     models.pillow.rotation.y = Math.PI/2;
 
     models.pillowleft.scale.set(0.6, 0.632, 0.56);
     models.pillowleft.position.set(454,-15.7,-94);
-    models.pillowleft.rotation.y = -Math.PI/6
+    models.pillowleft.rotation.y = -Math.PI/6;
 
     models.pillowright.scale.set(0.6, 0.632, 0.56);
-    models.pillowright.position.set(454,-15.7, 100);
-    models.pillowright.rotation.y = Math.PI/6
-    //Microphones
-   models.mic.position.set(458,-15.7,3) 
-   models.mic.scale.set(20,10,20)
-   models.mic.rotation.y = Math.PI/2
+    models.pillowright.position.set(454,-15.7,100);
+    models.pillowright.rotation.y = Math.PI/6;
 
-   models.micleft.position.set(440,-15.7,43) 
-   models.micleft.scale.set(20,10,20)
-   models.micleft.rotation.y = Math.PI/4
+    // mics ...
+    models.mic.position.set(458,-15.7,3);
+    models.mic.scale.set(20,10,20);
+    models.mic.rotation.y = Math.PI/2;
 
-   models.micright.position.set(440,-15.7,-40) 
-   models.micright.scale.set(20,10,20)
-   models.micright.rotation.y = 3*Math.PI/4
-   models.microphoneright.position.set(440,-15.7,-40) 
-   models.microphoneright.scale.set(20,10,20)
-   models.microphoneright.rotation.y = 3*Math.PI/4
+    models.micleft.position.set(440,-15.7,43);
+    models.micleft.scale.set(20,10,20);
+    models.micleft.rotation.y = Math.PI/4;
 
-   // initialize handlers
-    const camHandler = cameraHandler1.init(camera);
-    const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube);
+    models.micright.position.set(440,-15.7,-40);
+    models.micright.scale.set(20,10,20);
+    models.micright.rotation.y = 3*Math.PI/4;
 
+    // === Click handler ===
+    const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube, backButton);
     clickHandler.addPillow(models.pillow);
     clickHandler.addPillow(models.pillowleft);
     clickHandler.addPillow(models.pillowright);
 
-
-    camHandler.introPan(seatscube, stagecube);
-    
-
-
     console.log("✅ All models loaded:", models);
   } catch (err) {
     console.error("❌ Error while loading models:", err);
+  } finally {
+    // hide loading overlay if present
+    const loading = document.getElementById("loading");
+    if (loading) loading.style.display = "none";
   }
 })();
 
-//Lights//
-const ambiLight = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambiLight);
+// === Curtains intro ===
+enableCurtains && enableCurtains(() => {
+  camHandler.introPan(seatscube, stagecube);
+});
 
-//Stage Lights
-const stageLight = new THREE.RectAreaLight(0xFFFFC5, 60, 80, 120)
+// === Lights ===
+scene.add(new THREE.AmbientLight(0xffffff, 1));
+
+const stageLight = new THREE.RectAreaLight(0xFFFFC5, 60, 80, 120);
 stageLight.rotation.x = THREE.MathUtils.degToRad(-90);
-stageLight.position.set(508, 290, 0)
+stageLight.position.set(508, 290, 0);
+scene.add(stageLight);
+scene.add(new RectAreaLightHelper(stageLight, 0xffffff));
 
-const stageLightHelper = new RectAreaLightHelper(stageLight ,0xffffff)
-scene.add(stageLight, stageLightHelper)
+// === Resize handling ===
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
-//cube
-const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const cubegeom= new THREE.BoxGeometry(5,5,5);
-const cube = new THREE.Mesh(cubegeom,cubemat);
-cube.position.set(585,0,0);
-cube.material.transparent = true;
-cube.visible = false;
-
-cube.material.opacity = 0.5;
-camera.position.set(0,5,0);
-
-scene.add(cube);
-
-
-// gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
-//     gltfscene.scene.position.set(15,0,-10)
-//     gltfscene.scene.scale.set(0.1, 0.079, 0.07)
-//     gltfscene.scene.rotation.y = Math.PI/2
-    
-
-
-
-
-
-
-function animate(){
-    requestAnimationFrame(animate)
-    // //controls.update()
-    //console.log(camera.position)
-    renderer.render(scene, camera)
+// === Animate ===
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
 }
-
-
-animate()  
-
- 
-
+animate();
