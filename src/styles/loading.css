@@ -50,7 +50,7 @@
 .loader-progress {
   width: 0%;
   height: 100%;
-  background: limegreen;
+  background: rgb(225, 168, 0);
   transition: width 0.3s ease;
 }
 

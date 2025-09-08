@@ -51,7 +51,6 @@ seatscube.name = "seatsCube";
 scene.add(seatscube);
 stagecube.visible = false;
 seatscube.visible = false;
-
 // === Camera handler ===
 const camHandler = new CameraHandler(camera);
 
