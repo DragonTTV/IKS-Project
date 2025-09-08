@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@gltf-transform/cli": "^4.2.1",
+    "gsap": "^3.13.0",
     "three": "^0.180.0"
   },
   "devDependencies": {
