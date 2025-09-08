@@ -1,9 +1,16 @@
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/Addons.js";
 import { updateLoadingProgress, enableCurtains } from "../utils/loadingScreen";
 export async function loadModels(scene){
     const loader = new GLTFLoader();
-    const modelFiles = import.meta.glob("/src/model/*.glb", {eager: true});
+
+    const dracoLoader = new DRACOLoader;
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+    loader.setDRACOLoader(dracoLoader);
+    
+
+    const modelFiles = import.meta.glob("/src/model/*-draco.glb", {eager: true});
     // console.log(modelFiles)
 
     const files = Object.keys(modelFiles);
@@ -14,7 +21,7 @@ export async function loadModels(scene){
 
     for(let path of files){
         const fileUrl = modelFiles[path].default; 
-        const name = fileUrl.split('/').pop().replace('.glb', '');
+        const name = fileUrl.split('/').pop().replace('-draco.glb', '');
         
        
 
@@ -24,7 +31,7 @@ export async function loadModels(scene){
 
             models[name] = model;
             scene.add(model);
-            console.log(`Loaded ${name}`);
+            console.log(`Loaded ${name} (Draco Compressed) `);
             
             loaded++;
             let percent = Math.round((loaded/total)*100)
