@@ -5,6 +5,7 @@ import {RectAreaLightHelper} from "three/examples/jsm/Addons.js";
 import { loadModels } from "./handler/modelHandler";
 import { PI } from "three/tsl";
 import { CameraHandler, cameraHandler1 } from "./handler/camerahandler.js";
+import { ClickHandler } from "./handler/clickhandler.js";
 //renderer
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -69,10 +70,12 @@ seatscube.visible = false;
    models.microphoneright.scale.set(20,10,20)
    models.microphoneright.rotation.y = 3*Math.PI/4
 
-   // start intro pan (seats → stage)
+   // initialize handlers
     const camHandler = cameraHandler1.init(camera);
-    camHandler.introPan(seatscube, stagecube);
+    const clickHandler = new ClickHandler(camera, renderer, scene);
 
+    camHandler.introPan(seatscube, stagecube);
+    
 
 
     console.log("✅ All models loaded:", models);
