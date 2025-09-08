@@ -49,7 +49,7 @@ scene.add(stagecube);
 const seatscube = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshStandardMaterial({ color: 0xffffff }));
 seatscube.name = "seatsCube";
 scene.add(seatscube);
-stagecube.visible = true;
+stagecube.visible = false;
 seatscube.visible = false;
 
 // === Camera handler ===

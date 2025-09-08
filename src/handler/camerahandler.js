@@ -52,19 +52,50 @@ export class CameraHandler {
 
     const endPos = targetPos.clone().add(offset);
 
-    gsap.to(this.camera.position, {
-      duration: 2,
+    this.focusTween = gsap.to(this.camera.position, {
+      duration: 4,
       x: endPos.x,
       y: endPos.y,
       z: endPos.z,
-      ease: "power2.inOut",
+      ease: "power2.Out",
       onUpdate: () => this.camera.lookAt(targetPos),
       onComplete
     });
   }
 
   // === Return to stage (straight line behind stage) ===
-  returnToStage(stageCube, onComplete = () => {}) {
+returnToStage(stageCube, onComplete = () => {}) {
+  if (!this.focusTween || !this.lastPillow) return;
+
+  // Get world positions
+  const pillowPos = new THREE.Vector3();
+  this.lastPillow.getWorldPosition(pillowPos);
+
+  const stagePos = new THREE.Vector3();
+  stageCube.getWorldPosition(stagePos);
+
+  // Dummy object we tween between pillow → stage
+  const lookTarget = { x: pillowPos.x, y: pillowPos.y, z: pillowPos.z };
+
+  // Timeline so both run together
+  const tl = gsap.timeline({ onComplete });
+
+  // Step 1: reverse the existing camera path
+  tl.add(this.focusTween.reverse(), 0);
+
+  // Step 2: tween lookTarget from pillow → stage over same duration
+  tl.to(lookTarget, {
+    duration: this.focusTween.duration(),
+    x: stagePos.x,
+    y: stagePos.y,
+    z: stagePos.z,
+    ease: "power2.inOut",
+    onUpdate: () => {
+      this.camera.lookAt(lookTarget.x, lookTarget.y, lookTarget.z);
+    }
+  }, 0); // start at same time
+}
+}/*
     if (!this.stagePosition) {
       console.warn("⚠️ Stage position not saved!");
       return;
@@ -77,13 +108,23 @@ export class CameraHandler {
     const endPos = this.stagePosition.clone().add(new THREE.Vector3(-20, 0, 0));
 
     gsap.to(this.camera.position, {
-      duration: 2,
+      duration: 4,
       x: endPos.x,
       y: endPos.y,
       z: endPos.z,
-      ease: "power2.inOut",
-      onUpdate: () => this.camera.lookAt(stageTarget),
-      onComplete
+      ease: "back.out",
+      onUpdate: () => this.camera.lookAt(target.name),
+      onComplete: () => {
+      // Once arrived, switch focus to stage
+      const stageTarget = new THREE.Vector3();
+      stageCube.getWorldPosition(stageTarget);
+
+      gsap.to({}, {
+        duration: 1.5,
+        onUpdate: () => this.camera.lookAt(stageTarget),
+        onComplete
     });
   }
-}
+});*/
+
+
