@@ -65,7 +65,11 @@
 
   /* Fabric texture + folds */
   background-image:
+<<<<<<< HEAD
     url("/assets/textures/fabric.png"),
+=======
+    url("/assets/textures/fabric.jpg"),
+>>>>>>> 27357371897cf80e30a643c8d44a2f5dde32f7fc
     repeating-linear-gradient(
       to right,
       #3a0a0a 0px,
