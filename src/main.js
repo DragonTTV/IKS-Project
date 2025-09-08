@@ -3,11 +3,12 @@ import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { loadModels } from "./handler/modelHandler";
 import { PI } from "three/tsl";
+import { CameraHandler } from "./handler/camerahandler.js";
 //renderer
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-
+//camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
 // camera.position.x = 385;
 // camera.position.z = 100;
@@ -50,7 +51,18 @@ controls.enableDamping = true;
    models.microphoneright.scale.set(20,10,20)
    models.microphoneright.rotation.y = 3*Math.PI/4
 
+   //camhandler
+   camHandler.addTarget("stage", models.theater1);
+   camHandler.addTarget("pillow1", models.pillow);
+   camHandler.addTarget("pillow2", models.pillowleft);
+   camHandler.addTarget("pillow3", models.pillowright);
 
+   // start intro pan (seats → stage)
+   camHandler.introPan(
+   new THREE.Vector3(-47.37736416828069,47.238692315171484,-8.387787140933671), // seats camera position
+   new THREE.Vector3(),  // stage camera position
+   models.theater1
+   );
 
 
 
@@ -82,7 +94,7 @@ const stageLightHelper = new RectAreaLightHelper(stageLight ,0xffffff)
 
 scene.add(stageLight, stageLightHelper)
 
-
+//cube
 const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
 const cubegeom= new THREE.BoxGeometry(5,5,5);
 const cube = new THREE.Mesh(cubegeom,cubemat);
@@ -90,28 +102,28 @@ cube.position.set(585,0,0);
 cube.material.transparent = true;
 cube.visible = false;
 
+const stagecubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const stagecubegeom= new THREE.BoxGeometry(5,5,5);
+const stagecube = new THREE.Mesh(stagecubegeom,stagecubemat);
 cube.material.opacity = 0.5;
-camera.position.set(0,5,0);
-// camera.lookAt(cube)
 
-// console.log(cube.position)
+const seatcubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const seatcubegeom= new THREE.BoxGeometry(5,5,5);
+const seatcube = new THREE.Mesh(stagecubegeom,stagecubemat);
+cube.position.set(-47.37736416828069,47.238692315171484,-8.387787140933671)
+cube.material.opacity = 0.5;
+
 scene.add(cube);
+scene.add(stagecube);
+scene.add(seatcube);
 
 
-// gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
-//     gltfscene.scene.position.set(15,0,-10)
-//     gltfscene.scene.scale.set(0.1, 0.079, 0.07)
-//     gltfscene.scene.rotation.y = Math.PI/2
-    
-
-
-
-
-
+console.log(camera.position)
 
 function animate(){
     requestAnimationFrame(animate)
     controls.update()
+    console.log(camera.position)
     renderer.render(scene, camera)
 }
 
