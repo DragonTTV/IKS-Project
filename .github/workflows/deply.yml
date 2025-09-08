@@ -2,7 +2,7 @@ name: Deploy Vite site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # 👈 change if your default branch is not main
+    branches: [ main ]   # 👈 change if your default branch isn’t main
 
 permissions:
   contents: read
@@ -19,14 +19,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20   # use LTS, avoids Node 22 issues
+          node-version: 20   # LTS avoids Node 22 issues
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci   # clean, reliable install
 
       - name: Build project
-        run: npx vite build
+        run: npm run build   # ✅ uses your package.json script (vite build)
 
       - name: Upload production build
         uses: actions/upload-pages-artifact@v3
