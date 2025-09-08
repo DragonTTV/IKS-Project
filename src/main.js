@@ -3,7 +3,7 @@ import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { loadModels } from "./handler/modelHandler";
 import { PI } from "three/tsl";
-import { CameraHandler } from "./handler/camerahandler.js";
+//import { CameraHandler } from "./handler/camerahandler.js";
 //renderer
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -52,17 +52,17 @@ controls.enableDamping = true;
    models.microphoneright.rotation.y = 3*Math.PI/4
 
    //camhandler
-   camHandler.addTarget("stage", models.theater1);
-   camHandler.addTarget("pillow1", models.pillow);
-   camHandler.addTarget("pillow2", models.pillowleft);
-   camHandler.addTarget("pillow3", models.pillowright);
+   //camHandler.addTarget("stage", models.theater1);
+   //camHandler.addTarget("pillow1", models.pillow);
+   //camHandler.addTarget("pillow2", models.pillowleft);
+   //camHandler.addTarget("pillow3", models.pillowright);
 
    // start intro pan (seats → stage)
-   camHandler.introPan(
-   new THREE.Vector3(-47.37736416828069,47.238692315171484,-8.387787140933671), // seats camera position
-   new THREE.Vector3(),  // stage camera position
-   models.theater1
-   );
+   //camHandler.introPan(
+   //new THREE.Vector3(-47.37736416828069,47.238692315171484,-8.387787140933671), // seats camera position
+   //new THREE.Vector3(),  // stage camera position
+   //models.theater1
+   //);
 
 
 
@@ -72,7 +72,7 @@ controls.enableDamping = true;
   }
 })();
 
-//Lights
+//Lights//
 
 const ambiLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambiLight);
@@ -91,7 +91,7 @@ stageLight.rotation.x = THREE.MathUtils.degToRad(-90);
 stageLight.position.set(508, 290, 0)
 
 const stageLightHelper = new RectAreaLightHelper(stageLight ,0xffffff)
-
+camera.position.set(0,5,0)
 scene.add(stageLight, stageLightHelper)
 
 //cube
@@ -102,28 +102,13 @@ cube.position.set(585,0,0);
 cube.material.transparent = true;
 cube.visible = false;
 
-const stagecubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const stagecubegeom= new THREE.BoxGeometry(5,5,5);
-const stagecube = new THREE.Mesh(stagecubegeom,stagecubemat);
-cube.material.opacity = 0.5;
-
-const seatcubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const seatcubegeom= new THREE.BoxGeometry(5,5,5);
-const seatcube = new THREE.Mesh(stagecubegeom,stagecubemat);
-cube.position.set(-47.37736416828069,47.238692315171484,-8.387787140933671)
-cube.material.opacity = 0.5;
-
 scene.add(cube);
-scene.add(stagecube);
-scene.add(seatcube);
 
-
-console.log(camera.position)
 
 function animate(){
     requestAnimationFrame(animate)
     controls.update()
-    console.log(camera.position)
+    //console.log(camera.position)
     renderer.render(scene, camera)
 }
 
