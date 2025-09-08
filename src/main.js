@@ -72,7 +72,12 @@ seatscube.visible = false;
 
    // initialize handlers
     const camHandler = cameraHandler1.init(camera);
-    const clickHandler = new ClickHandler(camera, renderer, scene);
+    const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube);
+
+    clickHandler.addPillow(models.pillow);
+    clickHandler.addPillow(models.pillowleft);
+    clickHandler.addPillow(models.pillowright);
+
 
     camHandler.introPan(seatscube, stagecube);
     

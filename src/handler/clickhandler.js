@@ -24,6 +24,7 @@ export class ClickHandler {
   // Add a pillow to make it clickable
   addPillow(pillow) {
     this.pillows.push(pillow);
+    
   }
 
   // Handle clicks
