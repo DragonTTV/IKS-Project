@@ -1,6 +1,7 @@
 import * as THREE from "three";
-import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
+//import { OrbitControls, RectAreaLightHelper } from "three/examples/jsm/Addons.js";
+import {RectAreaLightHelper} from "three/examples/jsm/Addons.js";
+
 import { loadModels } from "./handler/modelHandler";
 import { showLoadingScreen } from "./utils/loadingScreen";
 import { PI } from "three/tsl";
@@ -10,19 +11,38 @@ import "../src/styles/loading.css";
 showLoadingScreen();
 
 
+import { CameraHandler, cameraHandler1 } from "./handler/camerahandler.js";
+import { ClickHandler } from "./handler/clickhandler.js";
 //renderer
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-
+//camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
 // camera.position.x = 385;
 // camera.position.z = 100;
 camera.rotation.y = -Math.PI/2;
+camera.position.set(0,5,0)
 
 const scene = new THREE.Scene();
-// const controls = new OrbitControls(camera, renderer.domElement);
-// controls.enableDamping = true;
+// //const controls = new OrbitControls(camera, renderer.domElement);
+// //controls.enableDamping = true;
+
+//dummy targets 
+const stagecubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const stagecubegeom= new THREE.BoxGeometry(5,5,5);
+const stagecube = new THREE.Mesh(stagecubegeom,stagecubemat);
+
+const seatscubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const seatscubegeom= new THREE.BoxGeometry(5,5,5);
+const seatscube = new THREE.Mesh(seatscubegeom,seatscubemat);
+
+stagecube.position.set(350.8986681999935,  44.18452249208729,  8.335760422847635);
+scene.add(stagecube);
+scene.add(seatscube);
+stagecube.visible = false;
+seatscube.visible = false;
+
 (async () => {
   try {
     const models = await loadModels(scene);
@@ -56,6 +76,17 @@ const scene = new THREE.Scene();
    models.micright.position.set(440,-15.7,-40) 
    models.micright.scale.set(20,10,20)
    models.micright.rotation.y = 3*Math.PI/4
+   models.microphoneright.position.set(440,-15.7,-40) 
+   models.microphoneright.scale.set(20,10,20)
+   models.microphoneright.rotation.y = 3*Math.PI/4
+
+   // initialize handlers
+    const camHandler = cameraHandler1.init(camera);
+    const clickHandler = new ClickHandler(camera, renderer, scene);
+
+    camHandler.introPan(seatscube, stagecube);
+    
+
 
     console.log("✅ All models loaded:", models);
   } catch (err) {
@@ -63,7 +94,7 @@ const scene = new THREE.Scene();
   }
 })();
 
-//Lights
+//Lights//
 const ambiLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambiLight);
 
@@ -73,10 +104,9 @@ stageLight.rotation.x = THREE.MathUtils.degToRad(-90);
 stageLight.position.set(508, 290, 0)
 
 const stageLightHelper = new RectAreaLightHelper(stageLight ,0xffffff)
-
 scene.add(stageLight, stageLightHelper)
 
-
+//cube
 const cubemat = new THREE.MeshStandardMaterial({ color: 0xffffff });
 const cubegeom= new THREE.BoxGeometry(5,5,5);
 const cube = new THREE.Mesh(cubegeom,cubemat);
@@ -89,9 +119,22 @@ camera.position.set(0,5,0);
 
 scene.add(cube);
 
+
+// gltfLoader.load("/src/model/pillow.glb", (gltfscene) => {
+//     gltfscene.scene.position.set(15,0,-10)
+//     gltfscene.scene.scale.set(0.1, 0.079, 0.07)
+//     gltfscene.scene.rotation.y = Math.PI/2
+    
+
+
+
+
+
+
 function animate(){
     requestAnimationFrame(animate)
-    // controls.update()
+    // //controls.update()
+    //console.log(camera.position)
     renderer.render(scene, camera)
 }
 
