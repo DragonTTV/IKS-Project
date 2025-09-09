@@ -59,9 +59,9 @@ const camHandler = new CameraHandler(camera);
     const models = await loadModels(scene, renderer);
 
     // ensure models exist
-    models.pillow.name = "pillow_center";
-    models.pillowleft.name = "pillow_left";
-    models.pillowright.name = "pillow_right";
+    //models.pillow.name = "pillow_center";
+    //models.pillowleft.name = "pillow_left";
+    //models.pillowright.name = "pillow_right";
 
     // Scale & place models
     // models.theater1.scale.set(30, 30, 30);
