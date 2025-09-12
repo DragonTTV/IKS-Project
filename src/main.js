@@ -59,9 +59,9 @@ const camHandler = new CameraHandler(camera);
     const models = await loadModels(scene, renderer);
 
     // ensure models exist
-    models.pillow.name = "pillow_center";
-    models.pillowleft.name = "pillow_left";
-    models.pillowright.name = "pillow_right";
+    //models.pillow.name = "pillow_center";
+    //models.pillowleft.name = "pillow_left";
+    //models.pillowright.name = "pillow_right";
 
     // Scale & place models
     // models.theater1.scale.set(30, 30, 30);
@@ -94,9 +94,7 @@ const camHandler = new CameraHandler(camera);
     // models.micright.rotation.y = 3*Math.PI/4;
 
     //instruments
-    models.mayurveena1.position.set(500,-5.7,3)
-    models.mayurveena1.scale.set(5,5,5)
-    models.mayurveena1.rotation.set(95,-90,0)
+    
     
     // === Click handler ===
     const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube, backButton);
