@@ -5,6 +5,7 @@
     "ektara": {"path": "/IKS-Project/assets/model/ektara.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
     "esraj": {"path": "/IKS-Project/assets/model/esraj.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
     "hudukka": {"path": "/IKS-Project/assets/model/hudukka.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
+    "khuang": {"path": "/IKS-Project/assets/model/khuang.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
     "mayurveena": {"path": "/IKS-Project/assets/model/mayurveena.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
     "mic": {"path": "/IKS-Project/assets/model/mic.glb", "position": [458,-15.7,3], "rotation": [0, 0, 0], "scale": [20,10,20]},
     "micleft": {"path": "/IKS-Project/assets/model/micleft.glb", "position": [440,-15.7,43], "rotation": [0, 0, 0], "scale": [20,10,20]},
