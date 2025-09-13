@@ -3,24 +3,24 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { updateLoadingProgress } from "../utils/loadingScreen.js";
+import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 
 export async function loadModels(scene, renderer) {
   const loader = new GLTFLoader();
 
   // ✅ Draco
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("/draco/");
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
   loader.setDRACOLoader(dracoLoader);
 
-  // ✅ KTX2
+  // ✅Setup KTX2 loader
   const ktx2Loader = new KTX2Loader()
-    .setTranscoderPath("/basis/")
-    .detectSupport(renderer);
+  .setTranscoderPath("/node_modules/three/examples/jsm/libs/basis/")
+  .detectSupport(renderer)
   loader.setKTX2Loader(ktx2Loader);
 
-  // ✅ Load metadata
-  const res = await fetch("/assets/models.json");
-  const modelData = await res.json();
+  // ✅ Vite will turn these into URLs
+  const modelFiles = import.meta.glob("/src/model/*-draco.glb", { eager: true });
 
   const entries = Object.entries(modelData);
   const total = entries.length;
@@ -29,8 +29,7 @@ export async function loadModels(scene, renderer) {
 
   for (const [name, { path, position, rotation, scale }] of entries) {
     try {
-      // Directly load from /public/assets/model/
-      const gltf = await loader.loadAsync(path);
+      const gltf = await loader.loadAsync(fileUrl);
       const model = gltf.scene;
 
       if (position) model.position.set(...position);
