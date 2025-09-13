@@ -1,6 +1,6 @@
 {
   "bhangkora": {"path": "/IKS-Project/assets/model/bhangkora.glb", "position": [454,-3.20,100], "rotation": [0,-4,0], "scale": [4, 4, 4]},
-  "gogona": { "path": "/IKS-Project/assets/model/bihugogona.glb", "position": [422,-8,88], "rotation": [-0.7, 1, 0.7 ], "scale": [0.5, 0.5, 0.5]},
+  "gogona": { "path": "/IKS-Project/assets/model/gogona.glb", "position": [422,-8,88], "rotation": [-0.7, 1, 0.7 ], "scale": [0.5, 0.5, 0.5]},
   "carpet": {"path": "/IKS-Project/assets/model/carpet.glb", "position": [478, -19.5, 0], "rotation": [0, 0, 0], "scale": [40, 50, 50]},
   "ektara": {"path": "/IKS-Project/assets/model/ektara.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
   "esraj": {"path": "/IKS-Project/assets/model/esraj.glb", "position": [490,-10,3], "rotation": [0, -1.5, 0], "scale": [55, 55, 55]},
