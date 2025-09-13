@@ -42,7 +42,7 @@ Object.assign(backButton.style, {
 document.body.appendChild(backButton);
 
 // === Camera & Scene ===
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 camera.rotation.y = -Math.PI/2;
 camera.position.set(0,5,0);
 const scene = new THREE.Scene();
