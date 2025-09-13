@@ -64,45 +64,45 @@ const camHandler = new CameraHandler(camera);
   try {
     const models = await loadModels(scene, renderer);
 
-    // ensure models exist
-    //models.pillow.name = "pillow_center";
-    //models.pillowleft.name = "pillow_left";
-    //models.pillowright.name = "pillow_right";
+    //ensure models exist
+    models.pillow.name = "pillow_center";
+    models.pillowleft.name = "pillow_left";
+    models.pillowright.name = "pillow_right";
 
-    // Scale & place models
-    // models.theater1.scale.set(30, 30, 30);
-    // models.carpet.scale.set(40,50,50);
-    // models.carpet.position.set(478,-19.5,0);
+    //Scale & place models
+    models.theater1.scale.set(30, 30, 30);
+    models.carpet.scale.set(40,50,50);
+    models.carpet.position.set(478,-19.5,0);
 
-    //models.pillow.scale.set(1, 0.632, 0.56);
-    //models.pillow.position.set(508,-15.7,3);
-    //models.pillow.rotation.y = Math.PI/2;
-//
-    //models.pillowleft.scale.set(0.6, 0.632, 0.56);
-    //models.pillowleft.position.set(454,-15.7,-94);
-   // models.pillowleft.rotation.y = -Math.PI/6;
+    models.pillow.scale.set(1, 0.632, 0.56);
+    models.pillow.position.set(508,-15.7,3);
+    models.pillow.rotation.y = Math.PI/2;
 
-   // models.pillowright.scale.set(0.6, 0.632, 0.56);
-   // models.pillowright.position.set(454,-15.7,100);
-   // models.pillowright.rotation.y = Math.PI/6;
+    models.pillowleft.scale.set(0.6, 0.632, 0.56);
+    models.pillowleft.position.set(454,-15.7,-94);
+   models.pillowleft.rotation.y = -Math.PI/6;
 
-    // // mics ...
-    // models.mic.position.set(458,-15.7,3);
-    // models.mic.scale.set(20,10,20);
-    // models.mic.rotation.y = Math.PI/2;
+   models.pillowright.scale.set(0.6, 0.632, 0.56);
+   models.pillowright.position.set(454,-15.7,100);
+   models.pillowright.rotation.y = Math.PI/6;
 
-    // models.micleft.position.set(440,-15.7,43);
-    // models.micleft.scale.set(20,10,20);
-    // models.micleft.rotation.y = Math.PI/4;
+    // mics ...
+    models.mic.position.set(458,-15.7,3);
+    models.mic.scale.set(20,10,20);
+    models.mic.rotation.y = Math.PI/2;
 
-    // models.micright.position.set(440,-15.7,-40);
-    // models.micright.scale.set(20,10,20);
-    // models.micright.rotation.y = 3*Math.PI/4;
+    models.micleft.position.set(440,-15.7,43);
+    models.micleft.scale.set(20,10,20);
+    models.micleft.rotation.y = Math.PI/4;
+
+    models.micright.position.set(440,-15.7,-40);
+    models.micright.scale.set(20,10,20);
+    models.micright.rotation.y = 3*Math.PI/4;
 
     //instruments
     
     
-    // === Click handler ===
+   // === Click handler ===
     const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube, backButton);
     clickHandler.addPillow(models.pillow);
     clickHandler.addPillow(models.pillowleft);

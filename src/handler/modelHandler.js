@@ -19,24 +19,34 @@ export async function loadModels(scene, renderer) {
   loader.setKTX2Loader(ktx2Loader);
 
   // ✅ Vite will turn these into URLs
-  // const modelFiles = import.meta.glob("/src/model/*-draco.glb", { eager: true });
-  const res = await fetch("/IKS-Project/assets/models.json");
-  const modelData = await res.json();
+  const modelFiles = import.meta.glob("/src/model/*-draco.glb", { eager: true });
+  //const res = await fetch("/IKS-Project/assets/models.json");
+  //const modelData = await res.json();
+  const files = Object.keys(modelFiles);
+  const total = files.length;
 
-  const entries = Object.entries(modelData);
-  const total = entries.length;
+
+  //const entries = Object.entries(modelData);
+ // const total = entries.length;
   let loaded = 0;
 
   const models = {};
+    for (let path of files) {
+    const fileUrl = modelFiles[path].default;
+    const name = fileUrl.split("/").pop().replace("-draco.glb", "");
 
-  for (const [name, { path, position, rotation, scale }] of entries) {
+
+
+  //for (const [name, { path, position, rotation, scale }] of entries) {
     try {
-      const gltf = await loader.loadAsync(path);
+      const gltf = await loader.loadAsync(fileUrl);
+
+      //const gltf = await loader.loadAsync(path);
       const model = gltf.scene;
 
-      if (position) model.position.set(...position);
-      if (rotation) model.rotation.set(...rotation);
-      if (scale) model.scale.set(...scale);
+      //if (position) model.position.set(...position);
+      //if (rotation) model.rotation.set(...rotation);
+      //if (scale) model.scale.set(...scale);
 
       models[name] = model;
       scene.add(model);
