@@ -1,5 +1,6 @@
 {
   "name": "project",
+  "homepage": "https://dragonttv.github.io/IKS-Project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,6 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "generate-model-list": "node scripts/generate-model-list.js"
   },
