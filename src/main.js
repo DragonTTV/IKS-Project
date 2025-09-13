@@ -6,6 +6,7 @@ import "../src/styles/loading.css";
 
 import { CameraHandler } from "./handler/camerahandler.js";
 import { ClickHandler } from "./handler/clickhandler.js";
+// import TWEEN from "@tweenjs/tween.js";
 
 //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -146,6 +147,7 @@ window.addEventListener("resize", () => {
 // === Animate ===
 function animate() {
   requestAnimationFrame(animate);
+  // TWEEN.update(time);
 //  controls.update();
   renderer.render(scene, camera);
 }
