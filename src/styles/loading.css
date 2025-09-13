@@ -35,6 +35,7 @@
 .loader-text {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  font-family: 'Palatino Linotype';
 }
 
 .loader-bar {
@@ -118,7 +119,8 @@
   z-index: 20;
   padding: 12px 24px;
   font-size: 1.2rem;
-  background: crimson;
+  font-family: 'Palatino Linotype';
+  background: rgba(120, 53, 1, 0.949);
   border: none;
   border-radius: 8px;
   color: white;
@@ -127,6 +129,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s ease, background 0.3s ease;
+
 }
 
 #start-btn.show {

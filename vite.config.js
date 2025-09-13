@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/IKS-Project/',
-  assetsInclude: ['**/*.glb'],
+  base: process.env.NODE_ENV === 'production'? '/IKS-Project/': '',
+  //assetsInclude: ['**/*.glb'],
 });

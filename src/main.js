@@ -7,6 +7,8 @@ import "../src/styles/loading.css";
 import { CameraHandler } from "./handler/camerahandler.js";
 import { ClickHandler } from "./handler/clickhandler.js";
 
+//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
 showLoadingScreen && showLoadingScreen();
 
 // === Renderer ===
@@ -14,6 +16,10 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 document.body.appendChild(renderer.domElement);
+
+//const controls = new OrbitControls( camera, renderer.domElement );
+
+//controls.enableDamping = true
 
 // === Back Button ===
 const backButton = document.createElement("button");
@@ -68,17 +74,17 @@ const camHandler = new CameraHandler(camera);
     // models.carpet.scale.set(40,50,50);
     // models.carpet.position.set(478,-19.5,0);
 
-    // models.pillow.scale.set(1, 0.632, 0.56);
-    // models.pillow.position.set(508,-15.7,3);
-    // models.pillow.rotation.y = Math.PI/2;
+    //models.pillow.scale.set(1, 0.632, 0.56);
+    //models.pillow.position.set(508,-15.7,3);
+    //models.pillow.rotation.y = Math.PI/2;
+//
+    //models.pillowleft.scale.set(0.6, 0.632, 0.56);
+    //models.pillowleft.position.set(454,-15.7,-94);
+   // models.pillowleft.rotation.y = -Math.PI/6;
 
-    // models.pillowleft.scale.set(0.6, 0.632, 0.56);
-    // models.pillowleft.position.set(454,-15.7,-94);
-    // models.pillowleft.rotation.y = -Math.PI/6;
-
-    // models.pillowright.scale.set(0.6, 0.632, 0.56);
-    // models.pillowright.position.set(454,-15.7,100);
-    // models.pillowright.rotation.y = Math.PI/6;
+   // models.pillowright.scale.set(0.6, 0.632, 0.56);
+   // models.pillowright.position.set(454,-15.7,100);
+   // models.pillowright.rotation.y = Math.PI/6;
 
     // // mics ...
     // models.mic.position.set(458,-15.7,3);
@@ -136,6 +142,7 @@ window.addEventListener("resize", () => {
 // === Animate ===
 function animate() {
   requestAnimationFrame(animate);
+//  controls.update();
   renderer.render(scene, camera);
 }
 animate();
