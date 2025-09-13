@@ -94,7 +94,11 @@ const camHandler = new CameraHandler(camera);
     // models.micright.rotation.y = 3*Math.PI/4;
 
     //instruments
-    
+
+    // models.mayurveena1.position.set(500,-5.7,3)
+    // models.mayurveena1.scale.set(5,5,5)
+    // models.mayurveena1.rotation.set(95,-90,0)
+
     
     // === Click handler ===
     const clickHandler = new ClickHandler(camera, renderer, scene, camHandler, stagecube, backButton);

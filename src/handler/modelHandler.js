@@ -9,7 +9,7 @@ export async function loadModels(scene, renderer) {
 
   // ✅ Setup Draco decoder
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  dracoLoader.setDecoderPath("/node_modules/three/examples/jsm/libs/draco/");
   loader.setDRACOLoader(dracoLoader);
 
   // ✅Setup KTX2 loader
