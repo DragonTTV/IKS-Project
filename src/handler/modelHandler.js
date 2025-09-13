@@ -3,33 +3,36 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { updateLoadingProgress } from "../utils/loadingScreen.js";
-import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 
 export async function loadModels(scene, renderer) {
   const loader = new GLTFLoader();
 
   // ✅ Draco
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  dracoLoader.setDecoderPath("/draco/"); // public/draco/*
   loader.setDRACOLoader(dracoLoader);
 
-  // ✅Setup KTX2 loader
+  // ✅ KTX2
   const ktx2Loader = new KTX2Loader()
-  .setTranscoderPath("/node_modules/three/examples/jsm/libs/basis/")
-  .detectSupport(renderer)
+    .setTranscoderPath("/basis/") // public/basis/*
+    .detectSupport(renderer);
   loader.setKTX2Loader(ktx2Loader);
 
-  // ✅ Vite will turn these into URLs
-  const modelFiles = import.meta.glob("/src/model/*-draco.glb", { eager: true });
+  // ✅ Fetch metadata from auto-generated models.json
+  const res = await fetch("/assets/models.json");
+  if (!res.ok) throw new Error("❌ Could not load models.json");
+  const modelData = await res.json();
 
   const entries = Object.entries(modelData);
   const total = entries.length;
   let loaded = 0;
+
   const models = {};
 
   for (const [name, { path, position, rotation, scale }] of entries) {
     try {
-      const gltf = await loader.loadAsync(fileUrl);
+      // `path` already contains something like "/assets/model/pillow.glb"
+      const gltf = await loader.loadAsync(path);
       const model = gltf.scene;
 
       if (position) model.position.set(...position);

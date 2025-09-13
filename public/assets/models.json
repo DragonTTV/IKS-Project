@@ -1,98 +1,290 @@
 {
   "bhangkora": {
     "path": "/assets/model/bhangkora.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "bihugogona": {
     "path": "/assets/model/bihugogona.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "carpet": {
     "path": "/assets/model/carpet.glb",
-    "position": [478, -19.5, 0],
-    "rotation": [0, 0, 0],
-    "scale": [40, 50, 50]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "ektara": {
     "path": "/assets/model/ektara.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "esraj": {
     "path": "/assets/model/esraj.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "hudukka": {
     "path": "/assets/model/hudukka.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "khuang": {
     "path": "/assets/model/khuang.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "mayurveena": {
     "path": "/assets/model/mayurveena.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "mic": {
     "path": "/assets/model/mic.glb",
-    "position": [458, -15.7, 3],
-    "rotation": [0, 0, 0],
-    "scale": [20, 10, 20]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "micleft": {
     "path": "/assets/model/micleft.glb",
-    "position": [440, -15.7, 43],
-    "rotation": [0, 0, 0],
-    "scale": [20, 10, 20]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "micright": {
     "path": "/assets/model/micright.glb",
-    "position": [440, -15.7, -40],
-    "rotation": [0, 0, 0],
-    "scale": [20, 10, 20]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "ottu": {
     "path": "/assets/model/ottu.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [1, 1, 1]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "pillow": {
     "path": "/assets/model/pillow.glb",
-    "position": [508, -15.7, 3],
-    "rotation": [0, 0, 0],
-    "scale": [1, 0.632, 0.56]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "pillowleft": {
     "path": "/assets/model/pillowleft.glb",
-    "position": [454, -15.7, -94],
-    "rotation": [0, 0, 0],
-    "scale": [0.6, 0.632, 0.56]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "pillowright": {
     "path": "/assets/model/pillowright.glb",
-    "position": [454, -15.7, 100],
-    "rotation": [0, 0, 0],
-    "scale": [0.6, 0.632, 0.56]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   },
   "theater": {
     "path": "/assets/model/theater.glb",
-    "position": [0, 0, 0],
-    "rotation": [0, 0, 0],
-    "scale": [30, 30, 30]
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
   }
 }
