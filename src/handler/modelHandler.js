@@ -1,33 +1,30 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js"; // ✅ correct import
-import { updateLoadingProgress } from "../utils/loadingScreen.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
+import { updateLoadingProgress } from "../utils/loadingScreen.js";
 
 export async function loadModels(scene, renderer) {
   const loader = new GLTFLoader();
 
-  // ✅ Setup Draco decoder
+  // ✅ Draco
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  dracoLoader.setDecoderPath("/draco/"); // public/draco/*
   loader.setDRACOLoader(dracoLoader);
 
-  // ✅Setup KTX2 loader
+  // ✅ KTX2
   const ktx2Loader = new KTX2Loader()
-  .setTranscoderPath("/node_modules/three/examples/jsm/libs/basis/")
-  .detectSupport(renderer)
+    .setTranscoderPath("/basis/") // public/basis/*
+    .detectSupport(renderer);
   loader.setKTX2Loader(ktx2Loader);
 
-  // ✅ Vite will turn these into URLs
-  const modelFiles = import.meta.glob("/src/model/*-draco.glb", { eager: true });
-  //const res = await fetch("/IKS-Project/assets/models.json");
-  //const modelData = await res.json();
-  const files = Object.keys(modelFiles);
-  const total = files.length;
+  // ✅ Fetch metadata from auto-generated models.json
+  const res = await fetch("/assets/models.json");
+  if (!res.ok) throw new Error("❌ Could not load models.json");
+  const modelData = await res.json();
 
-
-  //const entries = Object.entries(modelData);
- // const total = entries.length;
+  const entries = Object.entries(modelData);
+  const total = entries.length;
   let loaded = 0;
 
   const models = {};
@@ -39,9 +36,8 @@ export async function loadModels(scene, renderer) {
 
   //for (const [name, { path, position, rotation, scale }] of entries) {
     try {
-      const gltf = await loader.loadAsync(fileUrl);
-
-      //const gltf = await loader.loadAsync(path);
+      // `path` already contains something like "/assets/model/pillow.glb"
+      const gltf = await loader.loadAsync(path);
       const model = gltf.scene;
 
       //if (position) model.position.set(...position);
@@ -51,11 +47,9 @@ export async function loadModels(scene, renderer) {
       models[name] = model;
       scene.add(model);
 
-      console.log(`✅ Loaded ${name} (Draco Compressed)`);
-
+      console.log(`✅ Loaded ${name}`);
       loaded++;
-      const percent = Math.round((loaded / total) * 100);
-      updateLoadingProgress(percent);
+      updateLoadingProgress(Math.round((loaded / total) * 100));
     } catch (err) {
       console.error(`❌ Failed to load ${name}`, err);
     }
