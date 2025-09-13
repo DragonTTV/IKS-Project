@@ -89,7 +89,7 @@ returnToStage(stageCube, onComplete = () => {}) {
     x: stagePos.x,
     y: stagePos.y,
     z: stagePos.z,
-    ease: "power2.inOut",
+    ease: "none",
     onUpdate: () => {
       this.camera.lookAt(lookTarget.x, lookTarget.y, lookTarget.z);
     }
