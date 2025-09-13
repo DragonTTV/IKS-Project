@@ -28,16 +28,21 @@ export async function loadModels(scene, renderer) {
   let loaded = 0;
 
   const models = {};
+    for (let path of files) {
+    const fileUrl = modelFiles[path].default;
+    const name = fileUrl.split("/").pop().replace("-draco.glb", "");
 
-  for (const [name, { path, position, rotation, scale }] of entries) {
+
+
+  //for (const [name, { path, position, rotation, scale }] of entries) {
     try {
       // `path` already contains something like "/assets/model/pillow.glb"
       const gltf = await loader.loadAsync(path);
       const model = gltf.scene;
 
-      if (position) model.position.set(...position);
-      if (rotation) model.rotation.set(...rotation);
-      if (scale) model.scale.set(...scale);
+      //if (position) model.position.set(...position);
+      //if (rotation) model.rotation.set(...rotation);
+      //if (scale) model.scale.set(...scale);
 
       models[name] = model;
       scene.add(model);

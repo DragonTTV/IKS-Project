@@ -60,10 +60,10 @@ export class ClickHandler {
     }
 
     // stage clicked? check equality or children
-    if (hit === this.stageCube || this.stageCube.children.includes(hit)) {
+   /* if (hit === this.stageCube || this.stageCube.children.includes(hit)) {
       this.camHandler.returnToStage(this.stageCube);
       this.disabledPillows.clear();
       this.backButton.style.display = "none";
-    }
+    }*/
   }
 }

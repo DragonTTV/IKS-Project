@@ -29,7 +29,7 @@ export class CameraHandler {
   }
 
   // === Focus on pillow (straight line, custom offset per pillow) ===
-  focusOn(target, onComplete = () => {}) {
+  focusOn(target, onComplete) {
     this.lastPillow = target;
 
     const targetPos = new THREE.Vector3();
@@ -38,13 +38,15 @@ export class CameraHandler {
     // Different offsets depending on pillow
     let offset;
     switch (target.name) {
-      case "pillow_left":
-        offset = new THREE.Vector3(-20, 15, 30); // slightly angled
+      case "pillowleft":
+        console.log("focusing on left pillow");
+        offset = new THREE.Vector3(0, 45, 60); // slightly angle
+        
         break;
-      case "pillow_right":
-        offset = new THREE.Vector3(-20, 15, -30); // opposite side
+      case "pillowright":
+        offset = new THREE.Vector3(0, 45, -60); // opposite side
         break;
-      case "pillow_center":
+      case "pillow":
       default:
         offset = new THREE.Vector3(-40, 15, 2); // centered
         break;
@@ -53,11 +55,11 @@ export class CameraHandler {
     const endPos = targetPos.clone().add(offset);
 
     this.focusTween = gsap.to(this.camera.position, {
-      duration: 4,
+      duration: 2,
       x: endPos.x,
       y: endPos.y,
       z: endPos.z,
-      ease: "power2.Out",
+      ease: "none",
       onUpdate: () => this.camera.lookAt(targetPos),
       onComplete
     });
