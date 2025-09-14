@@ -18,7 +18,7 @@
   "theater": { "path": "IKS-Project/assets/model/theater.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [30, 30, 30],"userData": {"name": "theater","type":"other" }}
   ,
 
-  "bhangkoraCard": {"path": "IKS-Project/assets/model/bhankoracard.glb", "position":[0,0,0], "rotation": [0 ,-4,0], "scale": [2, 2, 2] ,"userData": {"name": "bhangkora","type":"card" } },
+  "bhangkoraCard": {"path": "IKS-Project/assets/model/bhankoracard.glb", "position":[0,0,0], "rotation": [0 ,0,0], "scale": [2, 2, 2] ,"userData": {"name": "bhangkora","type":"card" } },
   "gogonaCard": { "path": "IKS-Project/assets/model/gogonacard.glb", "position": [0,0,0], "rotation": [0, 0, 0 ], "scale": [2, 2, 2] ,"userData": {"name": "gogona","type":"card" } },
   "ektaraCard": {"path": "IKS-Project/assets/model/ektaracard.glb", "position":[ 0,0,0], "rotation": [0, 0, 0], "scale": [2, 2, 2] ,"userData": {"name": "ektara","type":"card" } },
   "esrajCard": {"path": "IKS-Project/assets/model/esrajcard.glb", "position":[0,0,0], "rotation": [0, 0, 0], "scale": [2, 2, 2] ,"userData": {"name": "esraj","type":"card" } },
