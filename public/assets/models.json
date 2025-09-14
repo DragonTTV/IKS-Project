@@ -11,7 +11,7 @@
   "micleft": {"path": "/assets/model/micleft.glb", "position": [440,-15.7,-40], "rotation": [0, 0.5, 0], "scale": [20,10,20]},
   "micright": {"path": "/assets/model/micright.glb", "position": [440,-15.7,30], "rotation": [0, 0.5, 0], "scale": [20,10,20]},
   "ottu": {"path": "/assets/model/ottu.glb", "position": [490,-18,-40], "rotation": [0, 0, 0], "scale": [50,50, 50]},
-  "morsing": {"path": "/assets/model/morsing.glb", "position": [425,-17,-87], "rotation": [0, 1.1, 0], "scale": [1,2,2]},
+  "morsing": {"path": "/assets/model/morsing.glb", "position": [425,-17,-87], "rotation": [0, 1.1, 0], "scale": [50,100,100]},
   "pillow": {"path": "/assets/model/pillow.glb", "position": [508,-15.7,3], "rotation": [0, 1.5, 0], "scale": [1, 0.632, 0.56]},
   "pillowleft": {"path": "/assets/model/pillowleft.glb", "position": [454,-10,-94], "rotation": [0, -0.523599, 0], "scale": [0.6, 0.632, 0.56]},
   "pillowright": {"path": "/assets/model/pillowright.glb", "position": [454,-15.7,100], "rotation": [0, 0.523599 , 0], "scale": [0.6, 0.632, 0.56]},
