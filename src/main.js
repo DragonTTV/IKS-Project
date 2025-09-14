@@ -18,9 +18,9 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 document.body.appendChild(renderer.domElement);
 
-//const controls = new OrbitControls( camera, renderer.domElement );
 
-//controls.enableDamping = true
+
+
 
 // === Back Button ===
 const backButton = document.createElement("button");
