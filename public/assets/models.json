@@ -6,7 +6,7 @@
   "esraj": {"path": "/IKS-Project/assets/model/esraj.glb", "position": [490,-10,10], "rotation": [0, -1.5, 0], "scale": [8, 8, 8]},
   "hudukka": {"path": "/IKS-Project/assets/model/hudukka.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
   "khuang": {"path": "/IKS-Project/assets/model/khuang.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1]},
-  "mayurveena": {"path": "/IKS-Project/assets/model/mayurveena.glb", "position": [490,-10,-25], "rotation": [-1.5, 0.75 , 0.75], "scale": [4, 4, 4]},
+  "mayurveena": {"path": "/IKS-Project/assets/model/mayurveena.glb", "position": [490,-10,-25], "rotation": [-1.5, 0.75 , 0.5], "scale": [4, 4, 4]},
   "mic": {"path": "/IKS-Project/assets/model/mic.glb", "position": [458,-15.7,3], "rotation": [0, 0, 0], "scale": [20,10,20]},
   "micleft": {"path": "/IKS-Project/assets/model/micleft.glb", "position": [440,-15.7,43], "rotation": [0, 0.5, 0], "scale": [20,10,20]},
   "micright": {"path": "/IKS-Project/assets/model/micright.glb", "position": [440,-15.7,-40], "rotation": [0, 0.5, 0], "scale": [20,10,20]},
