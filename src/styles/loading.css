@@ -27,6 +27,18 @@
   }
 }
 
+.curtain{
+  /* Fabric texture + folds */
+  background-image:
+    url("/assets/textures/fabric.png"),
+    repeating-linear-gradient(
+      to right,
+      #3a0a0a 0px,
+      #5c1111 30px,
+      #3a0a0a 60px
+    );
+}
+
 
 /* When curtains open → reveal scene */
 #loading-screen.curtains-open {
@@ -77,15 +89,7 @@
   width: 50%;
   height: 100%;
 
-  /* Fabric texture + folds */
-  background-image:
-    url("/assets/textures/fabric.png"),
-    repeating-linear-gradient(
-      to right,
-      #3a0a0a 0px,
-      #5c1111 30px,
-      #3a0a0a 60px
-    );
+  
   background-blend-mode: multiply;
   background-size: 200px auto, 100px 100%;
   background-repeat: repeat;
