@@ -20,8 +20,6 @@ document.body.appendChild(renderer.domElement);
 
 
 
-
-
 // === Back Button ===
 const backButton = document.createElement("button");
 backButton.innerText = "⟵ Back to Stage";
