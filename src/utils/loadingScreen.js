@@ -4,7 +4,7 @@ export function showLoadingScreen() {
   overlay.innerHTML = `
     <div class="loader-container">
       <div class="loader-text">Loading assets... <span id="loading-percent">0%</span></div>
-      <div id="loader-tip" style="display:none;">💡 Tip: Mobile users, please rotate your phone to landscape 📱</div>
+      <div id="loading-tip" style="display:none;">💡 Tip: Mobile users, please rotate your phone to landscape 📱</div>
       <div class="loader-bar">
         <div class="loader-progress"></div>
       </div>

@@ -1,6 +1,7 @@
 /* =============================
    LOADING SCREEN OVERLAY
 ============================= */
+
 #loading-screen {
   position: fixed;
   top: 0; left: 0;
@@ -16,13 +17,15 @@
 }
 
 #loading-tip {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 14px;
-  color: #aaa;
+  color: rgba(255, 255, 255, 0.65); /* muted */
   font-style: italic;
   text-align: center;
+  max-width: 90%;
+  line-height: 1.4;
+  user-select: none;
 }
-
 .curtain{
   /* Fabric texture + folds */
   background-image:
@@ -34,6 +37,15 @@
       #3a0a0a 60px
     );
 }
+
+#loading, 
+.loader-container, 
+.loader-text, 
+#loading-tip, 
+#start-btn {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, "EB Garamond", serif;
+}
+
 
 
 /* When curtains open → reveal scene */
@@ -56,7 +68,6 @@
 .loader-text {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-family: 'Palatino Linotype';
 }
 
 .loader-bar {
@@ -132,7 +143,6 @@
   z-index: 20;
   padding: 12px 24px;
   font-size: 1.2rem;
-  font-family: 'Palatino Linotype';
   background: rgba(120, 53, 1, 0.949);
   border: none;
   border-radius: 8px;
