@@ -15,6 +15,19 @@
   transition: background 1s ease; /* ✅ fades away when curtains open */
 }
 
+@media (max-width: 768px) {
+  #loading-tip {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  #loading-tip {
+    display: none;
+  }
+}
+
+
 /* When curtains open → reveal scene */
 #loading-screen.curtains-open {
   background: transparent;
