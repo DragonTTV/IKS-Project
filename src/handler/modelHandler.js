@@ -10,13 +10,13 @@ export async function loadModels(scene, renderer) {
   // ✅ Draco
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath("/IKS-Project/draco/"); // public/draco/*
-  dracoLoader.setDecoderPath("/draco/"); // public/draco/*
+  //dracoLoader.setDecoderPath("/draco/"); // public/draco/*
   loader.setDRACOLoader(dracoLoader);
 
   // ✅ KTX2
   const ktx2Loader = new KTX2Loader()
     .setTranscoderPath("/IKS-Project/basis/") // public/basis/*
-    .setTranscoderPath("/basis/") // public/basis/*
+    //.setTranscoderPath("/basis/") // public/basis/*
     .detectSupport(renderer);
   loader.setKTX2Loader(ktx2Loader);
 
