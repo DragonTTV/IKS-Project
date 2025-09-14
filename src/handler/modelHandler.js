@@ -9,20 +9,20 @@ export async function loadModels(scene, renderer) {
 
   // ✅ Draco
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("/IKS-Project/draco/"); // public/draco/*
-  // dracoLoader.setDecoderPath("/draco/"); // public/draco/*
+  // dracoLoader.setDecoderPath("/IKS-Project/draco/"); // public/draco/*
+  dracoLoader.setDecoderPath("/draco/"); // public/draco/*
   loader.setDRACOLoader(dracoLoader);
 
   // ✅ KTX2
   const ktx2Loader = new KTX2Loader()
-    .setTranscoderPath("/IKS-Project/basis/") // public/basis/*
-    // .setTranscoderPath("/basis/") // public/basis/*
+    // .setTranscoderPath("/IKS-Project/basis/") // public/basis/*
+    .setTranscoderPath("/basis/") // public/basis/*
     .detectSupport(renderer);
   loader.setKTX2Loader(ktx2Loader);
 
   // ✅ Fetch metadata from models.json
-  // const res = await fetch("/assets/m.json"); //Dev Testing
-  const res = await fetch("/IKS-Project/assets/models.json"); //Deployment
+  const res = await fetch("/assets/m.json"); //Dev Testing
+  // const res = await fetch("/IKS-Project/assets/models.json"); //Deployment
   if (!res.ok) throw new Error("❌ Could not load models.json");
   const modelData = await res.json();
 
