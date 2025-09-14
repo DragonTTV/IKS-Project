@@ -3,21 +3,48 @@ export function showLoadingScreen() {
   overlay.id = "loading-screen";
   overlay.innerHTML = `
     <div class="loader-container">
-      <div class="loader-text">Loading assets... <span id="loading-percent">0%</span></div>
-      <div class="loader-bar">
-      <div class="loader-progress"></div>
+      <div class="loader-text">
+        Loading assets... <span id="loading-percent">0%</span>
       </div>
-      <div id="loading-tip" style="display:none;">💡 Tip: Mobile users, please rotate your phone to landscape 📱</div>
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+      <div id="loading-tip" style="opacity:0;"></div>
     </div>
     <div class="curtain left-curtain"></div>
     <div class="curtain right-curtain"></div>
     <button id="start-btn">Start</button>
   `;
   document.body.appendChild(overlay);
-  if (/Mobi|Android/i.test(navigator.userAgent)) {
-    document.getElementById("loading-tip").style.display = "block";
+
+  // ✅ Tips array
+  const tips = [
+    "💡 Tip: Mobile users, please rotate your phone to landscape 📱",
+    "💡 Tip: The pillows can be clicked to zoom in 🛋️",
+    "💡 Tip: After zooming to a pillow, click an instrument to learn more 🎶"
+  ];
+
+  const tipEl = document.getElementById("loading-tip");
+  let currentTip = 0;
+
+  function showTip(index) {
+    tipEl.style.opacity = 0;
+    setTimeout(() => {
+      tipEl.textContent = tips[index];
+      tipEl.style.opacity = 1;
+    }, 300); // fade-out before showing next
   }
+
+  // show first tip after 1s
+  setTimeout(() => showTip(currentTip), 1000);
+
+  // cycle tips every 5s
+  setInterval(() => {
+    currentTip = (currentTip + 1) % tips.length;
+    showTip(currentTip);
+  }, 5000);
 }
+
 
   
 
