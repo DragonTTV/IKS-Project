@@ -32,7 +32,7 @@ export async function loadModels(scene, renderer) {
 
   const models = {};
 
-  for (const [name, { path, position, rotation, scale }] of entries) {
+  for (const [name, { path, position, rotation, scale,type }] of entries) {
     try {
       const gltf = await loader.loadAsync(path);
       const model = gltf.scene;
@@ -40,6 +40,20 @@ export async function loadModels(scene, renderer) {
       if (position) model.position.set(...position);
       if (rotation) model.rotation.set(...rotation);
       if (scale) model.scale.set(...scale);
+      model.userData = {
+  type: type || "other", 
+  name: name             
+};
+      //  if (name.toLowerCase().includes("card")) {
+      //   model.userData.type = "card";
+      //   model.visible = false; // hide cards at start
+      // } else if (["pillow", "pillowleft", "pillowright"].includes(name.toLowerCase())) {
+      //   model.userData.type = "pillow";
+      // } else if (name !== "theater" && name !== "carpet" && !name.toLowerCase().includes("mic")) {
+      //   model.userData.type = "instrument";
+      // } else {
+      //   model.userData.type = "other";
+      // }
 
       models[name] = model;
       scene.add(model);
