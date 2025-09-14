@@ -16,4 +16,15 @@
   "pillowleft": {"path": "/IKS-Project/assets/model/pillowleft.glb", "position": [454,-10,-94], "rotation": [0, -0.523599, 0], "scale": [0.6, 0.632, 0.56]},
   "pillowright": {"path": "/IKS-Project/assets/model/pillowright.glb", "position": [454,-15.7,100], "rotation": [0, 0.523599 , 0], "scale": [0.6, 0.632, 0.56]},
   "theater": { "path": "/IKS-Project/assets/model/theater.glb", "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [30, 30, 30]}
+  ,
+
+  "bhangkoraCard": {"path": "/IKS-Project/assets/model/bhangkoracard.glb", "position": [464,-9,70], "rotation": [-0.2 ,-4,0], "scale": [30, 30, 30]},
+  "gogonaCard": { "path": "/IKS-Project/assets/model/gogonacard.glb", "position": [430,-15,95], "rotation": [-0.7, 0.5, 0.7 ], "scale": [0.39, 0.39, 0.39]},
+  "ektaraCard": {"path": "/IKS-Project/assets/model/ektaracard.glb", "position": [480,-12,30], "rotation": [0, 1.5, 0], "scale": [3, 3, 3]},
+  "esrajCard": {"path": "/IKS-Project/assets/model/esrajcard.glb", "position": [490,-7,10], "rotation": [0, -1.5, 0], "scale": [9, 9, 9]},
+  "hudukkaCard": {"path": "/IKS-Project/assets/model/hudukkacard.glb", "position": [440,-10,-60], "rotation": [0, 0.5, 0], "scale": [4, 4, 6]},
+  "khuangCard": {"path": "/IKS-Project/assets/model/khuangcard.glb", "position": [474,-18,-60], "rotation": [0, 0, 0], "scale": [75, 75, 75]},
+  "mayurveenaCard": {"path": "/IKS-Project/assets/model/mayurveenacard.glb", "position": [490,-5,-20], "rotation": [0, 3.14 , 0], "scale": [4, 4, 4]},
+  "ottuCard": {"path": "/IKS-Project/assets/model/ottucard.glb", "position": [490,-18,-40], "rotation": [0, 0, 0], "scale": [50,50, 50]},
+  "morsingCard": {"path": "/IKS-Project/assets/model/morsing1card.glb", "position": [425,-10,-87], "rotation": [0.3, 1.1, 0], "scale": [2,2,2]}
 }
