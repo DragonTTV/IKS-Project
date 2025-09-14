@@ -15,16 +15,12 @@
   transition: background 1s ease; /* ✅ fades away when curtains open */
 }
 
-@media (max-width: 768px) {
-  #loading-tip {
-    display: block;
-  }
-}
-
-@media (min-width: 769px) {
-  #loading-tip {
-    display: none;
-  }
+#loading-tip {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+  font-style: italic;
+  text-align: center;
 }
 
 .curtain{
