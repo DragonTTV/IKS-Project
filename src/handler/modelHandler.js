@@ -21,8 +21,8 @@ export async function loadModels(scene, renderer) {
   loader.setKTX2Loader(ktx2Loader);
 
   // ✅ Fetch metadata from models.json
-  const res = await fetch("/assets/m.json"); //Dev Testing
-  // const res = await fetch("/IKS-Project/assets/models.json"); //Deployment
+  //const res = await fetch("/assets/m.json"); //Dev Testing
+  const res = await fetch("/assets/models.json"); //Deployment
   if (!res.ok) throw new Error("❌ Could not load models.json");
   const modelData = await res.json();
 
