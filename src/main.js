@@ -147,7 +147,7 @@ const stageLight = new THREE.RectAreaLight(0xFFFFC5, 60, 80, 120);
 stageLight.rotation.x = THREE.MathUtils.degToRad(-90);
 stageLight.position.set(508, 290, 0);
 scene.add(stageLight);
-scene.add(new RectAreaLightHelper(stageLight, 0xffffff));
+// scene.add(new RectAreaLightHelper(stageLight, 0xffffff));
 
 // === Resize handling ===
 window.addEventListener("resize", () => {
