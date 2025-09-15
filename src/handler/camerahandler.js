@@ -171,14 +171,14 @@
       let offset;
       switch (target.name) {
         case "pillowleft":
-          offset = new THREE.Vector3(40, 25, 60); // left side, raised, angled inward
+          offset = new THREE.Vector3(20, 25, 60); // left side, raised, angled inward
           break;
         case "pillowright":
-          offset = new THREE.Vector3(40, 25, -60); // right side, raised, angled inward
+          offset = new THREE.Vector3(20, 25, -60); // right side, raised, angled inward
           break;
         case "pillow":
         default:
-          offset = new THREE.Vector3(-80, 30, 0); // center, slightly back and above
+          offset = new THREE.Vector3(-60, 30, 0); // center, slightly back and above
           break;
       }
 
