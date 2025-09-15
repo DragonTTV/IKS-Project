@@ -82,6 +82,7 @@ export class ClickHandler {
             this.disabledPillows.add(pillow);
             this.camHandler.focusOn(pillow, () => {
               this.backButtonStage.style.display = "block";
+              this.mode = "instruments";
             });
           }
           return; // handled pillow click

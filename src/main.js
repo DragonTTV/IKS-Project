@@ -113,6 +113,7 @@ const camHandler = new CameraHandler(camera);
     clickHandler.addInstrument(models.mayurveena);
     clickHandler.addInstrument(models.ottu);
     clickHandler.addInstrument(models.morsing);
+    clickHandler.addInstrument(models.khamak);
 
     clickHandler.addCard("bhangkora", models.bhangkoraCard);
     clickHandler.addCard("gogona", models.gogonaCard);
@@ -123,6 +124,7 @@ const camHandler = new CameraHandler(camera);
     clickHandler.addCard("mayurveena", models.mayurveenaCard);
     clickHandler.addCard("ottu", models.ottuCard);
     clickHandler.addCard("morsing", models.morsingCard);
+    clickHandler.addCard("khamak", models.khamakCard);
 
     console.log("✅ All models loaded:", models);
   } catch (err) {
