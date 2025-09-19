@@ -2,7 +2,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 
 export class ClickHandler {
-  constructor(camera, renderer, scene, camHandler, stageCube, backButtonStage, backButtonCard) {
+  constructor(camera, renderer, scene, camHandler, stageCube, backButtonStage, backButtonCard, playmusicButton) {
     this.camera = camera;
     this.scene = scene;
     this.canvas = renderer.domElement;
@@ -18,6 +18,7 @@ export class ClickHandler {
     this.pillows = [];
     this.instruments = [];
     this.cards = new Map(); // Map instrument name (lowercase) => card mesh
+    this.audio = new Map(); // Map instrument name => audio object
 
     this.disabledPillows = new Set();
 
@@ -47,6 +48,11 @@ export class ClickHandler {
       }
     });
   }
+     
+    this.playmusicButton.addEventListener("click", () => {
+      if (this.mode === "card") {
+        
+      }
 
   addPillow(pillow) {
     this.pillows.push(pillow);
@@ -59,6 +65,9 @@ export class ClickHandler {
   addCard(instrumentName, cardMesh) {
     this.cards.set(instrumentName.toLowerCase(), cardMesh);
     cardMesh.visible = false; // hide initially
+  }
+  addAudio(cardname, audiofile) {
+    this.audio.set(cardname.toLowerCase(), audiofile);
   }
 
   onClick(event) {
@@ -133,6 +142,7 @@ export class ClickHandler {
     this.activeCardMesh = card;
     this.backButtonStage.style.display = "none";
     this.backButtonCard.style.display = "block";
+    this.playmusicButton.style.display = "block";
     this.mode = "card";
   }
 
