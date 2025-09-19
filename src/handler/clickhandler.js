@@ -2,15 +2,17 @@ import * as THREE from "three";
 import gsap from "gsap";
 
 export class ClickHandler {
-  constructor(camera, renderer, scene, camHandler, stageCube, backButtonStage, backButtonCard, playmusicButton) {
+  constructor(camera, renderer, scene, camHandler, stageCube, backButton, backButtonCard, playmusicButton,stopmusicButton) {
     this.camera = camera;
     this.scene = scene;
     this.canvas = renderer.domElement;
     this.camHandler = camHandler;
     this.stageCube = stageCube;
 
-    this.backButtonStage = backButtonStage;
+    this.backButton = backButton;
     this.backButtonCard = backButtonCard;
+    this.playmusicButton = playmusicButton;
+    this.stopmusicButton = stopmusicButton;
 
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
@@ -27,18 +29,21 @@ export class ClickHandler {
     this.activeInstrument = null;
     this.activeCardMesh = null;
 
+    
+
     this.canvas.addEventListener("pointerdown", (e) => this.onClick(e));
+    
+
 
     // Back button aimed at stage
-    this.backButtonStage.addEventListener("click", () => {
+    this.backButton.addEventListener("click", () => {
       if (this.mode === "instruments") {
         this.camHandler.returnToStage(this.stageCube);
         this.disabledPillows.clear();
-        this.backButtonStage.style.display = "none";
+        this.backButton.style.display = "none";
         this.mode = "stage";
-      } else if (this.mode === "card") {
-        this.hideCard();
-      }
+        console.log(this.mode);
+      } 
     });
 
     // Back button aimed at cards
@@ -47,12 +52,27 @@ export class ClickHandler {
         this.hideCard();
       }
     });
-  }
+  
      
     this.playmusicButton.addEventListener("click", () => {
-      if (this.mode === "card") {
+      if(this.mode==="card"){
+        const cardName = this.activeCardMesh.userData.name.replace("Card", "");
+        const audioPath = this.audio.get(cardName);
+        this.handleAudio(audioPath);
+        console.log(`Played audio for ${cardName} from ${audioPath}`);
         
+
       }
+    });
+    this.playmusicButton.addEventListener("click", () => {
+      if(this.mode==="audio"){
+        this.stopmusic();
+        
+
+      }
+    });
+    
+  }
 
   addPillow(pillow) {
     this.pillows.push(pillow);
@@ -67,7 +87,9 @@ export class ClickHandler {
     cardMesh.visible = false; // hide initially
   }
   addAudio(cardname, audiofile) {
+    
     this.audio.set(cardname.toLowerCase(), audiofile);
+    console.log(`Adding audio: ${cardname} -> ${audiofile}`);
   }
 
   onClick(event) {
@@ -90,8 +112,12 @@ export class ClickHandler {
           if (!this.disabledPillows.has(pillow)) {
             this.disabledPillows.add(pillow);
             this.camHandler.focusOn(pillow, () => {
-              this.backButtonStage.style.display = "block";
+              this.backButton.style.display = "block";
+              this.backButtonCard.style.display = "none";
+              this.playmusicButton.style.display = "none";
+              this.stopmusicButton.style.display = "none";
               this.mode = "instruments";
+              console.log(this.mode);
             });
           }
           return; // handled pillow click
@@ -106,6 +132,7 @@ export class ClickHandler {
       while (parent) {
         if (parent === instrument) {
           const card = this.cards.get(instrument.userData.name.toLowerCase());
+          
           if (card) {
             this.showCard(card);
           }
@@ -114,8 +141,29 @@ export class ClickHandler {
         parent = parent.parent;
       }
     }
+    
   }
-
+  
+  handleAudio(audioPath)
+    {
+    this.playmusicButton.style.display = "none";
+    this.mode="audio";
+    console.log(this.mode);
+    this.stopmusicButton.style.display = "block";
+    console.log("handle audio called");
+    const music = new Audio(audioPath);
+    music.play();
+    
+  }
+  stopmusic(){
+    this.stopmusicButton.style.display = "none";
+    this.playmusicButton.style.display = "block";
+    music.pause();
+    music.currentTime = 0;
+    this.mode="card";
+    console.log(this.mode);
+  }
+  
   showCard(card) {
     if (this.activeCardMesh) this.hideCard();
 
@@ -140,28 +188,39 @@ export class ClickHandler {
     });
 
     this.activeCardMesh = card;
-    this.backButtonStage.style.display = "none";
+    this.backButton.style.display = "none";
     this.backButtonCard.style.display = "block";
     this.playmusicButton.style.display = "block";
     this.mode = "card";
+    console.log(this.mode);
   }
 
   hideCard() {
     if (!this.activeCardMesh) return;
+    const cardtohide = this.activeCardMesh;
 
-    gsap.to(this.activeCardMesh.scale, {
+    gsap.to(cardtohide.scale,
+       {
+      
       x: 0.1, y: 0.1, z: 0.1,
       duration: 0.4,
       ease: "power2.in",
       onComplete: () => {
-        this.activeCardMesh.visible = false;
+        
+         cardtohide.visible = false;
+       
         this.activeCardMesh = null;
       }
     });
 
     this.backButtonCard.style.display = "none";
-    this.backButtonStage.style.display = "block";
+    this.backButton.style.display = "block";
+    this.playmusicButton.style.display = "none";
+    this.stopmusicButton.style.display = "none";
     this.mode = "instruments";
+    console.log(this.mode);
   }
+  
 }
+
 // Note: The above code assumes that the card models are already added to the scene and mapped to their respective instruments using addCard method.
