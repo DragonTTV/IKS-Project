@@ -64,7 +64,7 @@ export class ClickHandler {
 
       }
     });
-    this.playmusicButton.addEventListener("click", () => {
+    this.stopmusicButton.addEventListener("click", () => {
       if(this.mode==="audio"){
         this.stopmusic();
         
@@ -104,7 +104,7 @@ export class ClickHandler {
     if (!intersects.length) return;
 
     const hit = intersects[0].object;
-
+    
     for (const pillow of this.pillows) {
       let parent = hit;
       while (parent) {
@@ -129,7 +129,8 @@ export class ClickHandler {
     // Similar logic for instruments (cards):
     for (const instrument of this.instruments) {
       let parent = hit;
-      while (parent) {
+      if(this.mode==="stage")return;
+      else {while (parent) {
         if (parent === instrument) {
           const card = this.cards.get(instrument.userData.name.toLowerCase());
           
@@ -141,7 +142,7 @@ export class ClickHandler {
         parent = parent.parent;
       }
     }
-    
+     
   }
   
   handleAudio(audioPath)
@@ -165,6 +166,7 @@ export class ClickHandler {
   }
   
   showCard(card) {
+    if(this.mode==="stage" || this.mode==="card" || this.mode==="audio")
     if (this.activeCardMesh) this.hideCard();
 
     // Position card 10 units in front of camera
@@ -191,11 +193,13 @@ export class ClickHandler {
     this.backButton.style.display = "none";
     this.backButtonCard.style.display = "block";
     this.playmusicButton.style.display = "block";
+    this.stopmusicButton.style.display = "none";
     this.mode = "card";
     console.log(this.mode);
   }
 
   hideCard() {
+    
     if (!this.activeCardMesh) return;
     const cardtohide = this.activeCardMesh;
 
