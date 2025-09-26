@@ -25,7 +25,7 @@ export class ClickHandler {
     this.disabledPillows = new Set();
 
     this.mode = "stage"; // Keeping mode but not blocking clicks based on it for now
-
+    this.music = null;
     this.activeInstrument = null;
     this.activeCardMesh = null;
 
@@ -64,13 +64,13 @@ export class ClickHandler {
 
       }
     });
-    this.stopmusicButton.addEventListener("click", () => {
-      if(this.mode==="audio"){
-        this.stopmusic();
+    // this.stopmusicButton.addEventListener("click", () => {
+    //   if(this.mode==="audio"){
+    //     this.stopmusic();
         
 
-      }
-    });
+    //   }
+    // });
     
   }
 
@@ -115,7 +115,7 @@ export class ClickHandler {
               this.backButton.style.display = "block";
               this.backButtonCard.style.display = "none";
               this.playmusicButton.style.display = "none";
-              this.stopmusicButton.style.display = "none";
+              // this.stopmusicButton.style.display = "none";
               this.mode = "instruments";
               console.log(this.mode);
             });
@@ -129,8 +129,8 @@ export class ClickHandler {
     // Similar logic for instruments (cards):
     for (const instrument of this.instruments) {
       let parent = hit;
-      if(this.mode==="stage")return;
-      else {while (parent) {
+      
+        {while (parent) {
         if (parent === instrument) {
           const card = this.cards.get(instrument.userData.name.toLowerCase());
           
@@ -144,31 +144,34 @@ export class ClickHandler {
     }
      
   }
-  
-  handleAudio(audioPath)
-    {
+}
+   // Add this property to store the audio object
+
+  handleAudio(audioPath) {
     this.playmusicButton.style.display = "none";
-    this.mode="audio";
+    this.mode = "audio";
     console.log(this.mode);
-    this.stopmusicButton.style.display = "block";
+    //this.stopmusicButton.style.display = "block";
     console.log("handle audio called");
-    const music = new Audio(audioPath);
-    music.play();
-    
+    this.music = new Audio(audioPath);
+    this.music.play();
   }
-  stopmusic(){
-    this.stopmusicButton.style.display = "none";
-    this.playmusicButton.style.display = "block";
-    music.pause();
-    music.currentTime = 0;
-    this.mode="card";
-    console.log(this.mode);
-  }
+
+  // stopmusic() {
+  //   //this.stopmusicButton.style.display = "none";
+  //   this.playmusicButton.style.display = "block";
+  //   if (this.music) {
+  //     this.music.pause();
+  //     this.music.currentTime = 0;
+  //   }
+  //   this.mode = "card";
+  //   console.log(this.mode);
+  // }
   
   showCard(card) {
-    if(this.mode==="stage" || this.mode==="card" || this.mode==="audio")
+    
     if (this.activeCardMesh) this.hideCard();
-
+  
     // Position card 10 units in front of camera
     const camDir = new THREE.Vector3();
     this.camera.getWorldDirection(camDir);
@@ -193,7 +196,7 @@ export class ClickHandler {
     this.backButton.style.display = "none";
     this.backButtonCard.style.display = "block";
     this.playmusicButton.style.display = "block";
-    this.stopmusicButton.style.display = "none";
+    //this.stopmusicButton.style.display = "none";
     this.mode = "card";
     console.log(this.mode);
   }
@@ -220,11 +223,12 @@ export class ClickHandler {
     this.backButtonCard.style.display = "none";
     this.backButton.style.display = "block";
     this.playmusicButton.style.display = "none";
-    this.stopmusicButton.style.display = "none";
+    //this.stopmusicButton.style.display = "none";
     this.mode = "instruments";
     console.log(this.mode);
   }
   
+
 }
 
 // Note: The above code assumes that the card models are already added to the scene and mapped to their respective instruments using addCard method.
