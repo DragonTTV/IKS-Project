@@ -15,14 +15,14 @@ export async function loadModels(scene, renderer) {
 
   // ✅ KTX2
   const ktx2Loader = new KTX2Loader()
-    //.setTranscoderPath("/IKS-Project/basis/") // public/basis/*
-    .setTranscoderPath("/basis/") // public/basis/*
+    .setTranscoderPath("/IKS-Project/basis/") // public/basis/*
+    //.setTranscoderPath("/basis/") // public/basis/*
     .detectSupport(renderer);
   loader.setKTX2Loader(ktx2Loader);
 
   // ✅ Fetch metadata from models.json
   //const res = await fetch("/assets/model.json"); //Dev Testing
-  const res = await fetch("/assets/models.json"); //Deployment(add iks project for deployment)
+  const res = await fetch("/IKS-Project/assets/models.json"); //Deployment(add iks project for deployment)
   if (!res.ok) throw new Error("❌ Could not load models.json");
   const modelData = await res.json();
 
