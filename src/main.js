@@ -58,8 +58,8 @@ const playmusicButton = document.createElement("button");
 playmusicButton.innerText = "▶";
 Object.assign(playmusicButton.style, {
   position: "absolute",
-  top: "20px",
-  right: "150px",
+  bottom: "100px",
+  right: "300px",
   padding: "10px 15px",
   fontSize: "16px",
   background: "rgba(195, 136, 0, 1)",
@@ -73,11 +73,11 @@ Object.assign(playmusicButton.style, {
 document.body.appendChild(playmusicButton);
 
 const stopmusicButton = document.createElement("button");
-stopmusicButton.innerText = "stop Music";
+stopmusicButton.innerText = "||";
 Object.assign(stopmusicButton.style, {
   position: "absolute",
-  top: "20px",
-  right: "150px",
+  bottom: "100px",
+  right: "300px",
   padding: "10px 15px",
   fontSize: "16px",
   background: "rgba(195, 136, 0, 1)",
@@ -133,7 +133,7 @@ const camHandler = new CameraHandler(camera);
     // === Click handler ===
     const clickHandler = new ClickHandler(
       camera, renderer, scene, camHandler, stagecube,
-      backButton, backButtonCard, playmusicButton
+      backButton, backButtonCard, playmusicButton,stopmusicButton
     );
 
     clickHandler.addPillow(models.pillow);
@@ -166,8 +166,8 @@ const camHandler = new CameraHandler(camera);
     clickHandler.addAudio("gogona", "/assets/audio/gogona.mp3");  
     clickHandler.addAudio("ektara", "/assets/audio/ektara.mp3"); 
     clickHandler.addAudio("esraj", "/assets/audio/esraj.mp3");   
-    clickHandler.addAudio("hudukka", "/assets/audio/hadukka.mp3");
-    clickHandler.addAudio("khuang", "/assets/audio/khuang.mp3");
+    clickHandler.addAudio("hudukka", "/assets/audio/hudukka.mp3");
+    clickHandler.addAudio("khuang", "/assets/audio/khuang1.mp3");
     clickHandler.addAudio("mayurveena", "/assets/audio/mayurveena.mp3");
     clickHandler.addAudio("ottu", "/assets/audio/ottu.mp3");
     clickHandler.addAudio("morsing", "/assets/audio/morsing.mp3"); 
